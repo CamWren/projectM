@@ -14,7 +14,7 @@ var Header = React.createClass({
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                 </button>
-                <img id="logo" src="../assets/img/logo.png" />
+                <img id="logo" src="../public/assets/img/logo.png" />
                 <a className="navbar-brand" href="index.html"><h1>m<span style={{color: '#efa656'}}>i</span>grate</h1></a>
             </div>
 

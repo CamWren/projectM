@@ -21,8 +21,8 @@ var Body = React.createClass({
                             </select>
 
                             <button id="firstbutton"> Submit </button>
-                        </form>
                             <button id="clearbutton"> Clear </button>
+                        </form>
             </div>
                     
             <section className="second-w3ls">
