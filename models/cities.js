@@ -3,10 +3,6 @@
 module.exports = function(sequelize, DataTypes) {
   var City_Rank = sequelize.define("city_rank", {
     
-  
-
-    
-
     City_Name: {
 
       type: DataTypes.STRING
