@@ -5,7 +5,7 @@ var Mapp = React.createClass({
     return (
 
      <div className="container">
-
+      
      </div>
 
     );
