@@ -1,10 +1,15 @@
-var React = require("react");
+<html>
+<head>
+<title>SimplyRETS Map Search</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
 
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.js"></script>
+
+<script language="javascript">
 $(document).ready(function() {
 var map = new L.Map('map');
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -53,17 +58,10 @@ map.on('draw:created', function (e) {
     map.addLayer(e.layer);
 });
 });
+</script>
 
-var Mapp = React.createClass({
-  render: function() {
-    return (
-
-     <div className="container">    
-				 <div id="map" style="height: 100%"></div>
-	</div>
-
-    );
-  }
-});
-
-module.exports = Mapp;
+</head>
+<body>
+  <div id="map" style="height: 100%"></div>
+</body>
+</html>
