@@ -2,7 +2,7 @@
   "name": "migrate",
   "version": "1.0.0",
   "description": "",
-  "main": "public/home.html",
+  "main": "public/index.html",
   "dependencies": {
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
@@ -16,6 +16,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+<<<<<<< HEAD
+=======
+    "build": "node server.js",
+>>>>>>> 2ec09c95552bbc02f067f7c8b2c6a587362dd399
     "dev": "node server.js"
   },
   "author": "Cam Wren, Phil Mlaker, Aryan Nawim",
