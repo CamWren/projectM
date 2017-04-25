@@ -17,7 +17,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "build": "node server.js",
-
     "dev": "node server.js"
   },
   "author": "Cam Wren, Phil Mlaker, Aryan Nawim",
