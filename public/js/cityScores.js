@@ -63,7 +63,7 @@ var cityScores = [
 ];
 
 // Here we export the array. This makes it accessible to other files using require.
-// module.exports = cityScores;
+module.exports = cityScores;
 
  // We will use this object to hold the "best match". We will constantly update it as we
     // loop through all of the options

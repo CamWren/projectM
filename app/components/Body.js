@@ -1387,7 +1387,7 @@ var Body = React.createClass({
                                 </div>
                                 <div className="content-4">
                                     <h3>How important are the following city qualities to you?</h3>
-                                    <h4 id="suggestedCity">Best Match: </h4>
+                                    <h4 id="suggestedCity"></h4>
                                     <p>Public Transportation
                                         <li>
                                             <select id="question1">
@@ -1548,6 +1548,7 @@ var Body = React.createClass({
                                             </select>
                                         </li>
                                     </p>
+
                                 </div>
                             </div>
                         </section>

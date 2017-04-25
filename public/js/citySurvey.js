@@ -126,7 +126,7 @@ select10.addEventListener('change', function() {
 //function that gets the data from our public api
 
 function getCities(){
-  $.get("api/cities", function(data){
+  $.get("/api", function(data){
     
     for(var i=0; i <data.length; i++){
     
@@ -146,7 +146,7 @@ function getCities(){
 
             }
     city_Scores.push(cities);        
-            
+            //console.log(cities);
   }
 
   });
@@ -155,7 +155,7 @@ function getCities(){
 //function which finds the best city based on the survey results the user has entered.
 function myBestMatch() {
   
- console.log()
+// console.log()
   var bestMatch = {
     city: "",
     state: "",
@@ -193,6 +193,8 @@ function myBestMatch() {
   }
 
   console.log(bestMatch);
-  console.log(values);
+
+ // console.log(values);
 };
 }
+module.exports = bestMatch;
