@@ -17,11 +17,11 @@ module.exports = function(app) {
   app.get("/api/cities", function(req, res) {
    
     // findAll returns all entries for a table when used with no options
-    db.city_rank.findAll().then(function(dbCities) {
-      console.log(dbCities);
-      // We have access to the cities as an argument inside of the callback function
-      res.json(dbCities);
-    });
+    // db.city_rank.findAll().then(function(dbCities) {
+    //   console.log(dbCities);
+    //   // We have access to the cities as an argument inside of the callback function
+    //   res.json(dbCities);
+    // });
   });
 
  
