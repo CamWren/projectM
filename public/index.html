@@ -20,6 +20,7 @@
     <!-- /fonts -->
     <!-- css -->
     <link href="css/reset.css" rel="stylesheet" type="text/css" media="all" />
+    
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/jQuery.lightninBox.css" rel="stylesheet" type="text/css" media="all" />
@@ -28,6 +29,7 @@
     <link href="css/jquery.countdown.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="css/d3.css" rel="stylesheet" type="text/css" media="all" />
     <!-- /css -->
     <!-- /map css -->
     <style>
@@ -48,6 +50,8 @@
     <script type="text/javascript" src="js/modernizr.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/citySurvey.js"></script>
+    <script type="text/javascript" src="js/d3.js"></script>
+    <script type="text/javascript" src="d3.min.js"></script>
 
 
 <!--LEAFLET CODE BEGINNING-->
@@ -112,10 +116,18 @@
 
 <body>
 
+
+
     <div class="container">
 
         <nav class="navbar navbar-default">
-            <div class="navbar-header">
+
+                                <div id="imageContainer">
+                                <img src="../assets/img/logoMigrate.svg">
+                                    
+                                </div>
+
+
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -123,9 +135,10 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <img id="logo" src="assets/img/logo.png" />
+                    
 
-                <a class="navbar-brand" href="index.html"><h1>m<span style="color: #efa656;">i</span>grate</h1></a>
+
+                
             </div>
 
             <div id="navbar" class="navbar-collapse collapse">
