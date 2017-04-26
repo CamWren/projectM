@@ -1750,51 +1750,10 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
     var rppsScore2 = [];
 
     $("#salaries").on("click", function(event) {
-        // Initialize a new plugin instance for element or array of elements.
-        var slider = document.querySelectorAll('input[type="range"]');
-        rangeSlider.create(slider, {
-            polyfill: true,     // Boolean, if true, custom markup will be created
-            rangeClass: 'rangeSlider',
-            disabledClass: 'rangeSlider--disabled',
-            fillClass: 'rangeSlider__fill',
-            bufferClass: 'rangeSlider__buffer',
-            handleClass: 'rangeSlider__handle',
-            startEvent: ['mousedown', 'touchstart', 'pointerdown'],
-            moveEvent: ['mousemove', 'touchmove', 'pointermove'],
-            endEvent: ['mouseup', 'touchend', 'pointerup'],
-            min: null,          // Number , 0
-            max: null,          // Number, 100
-            step: null,         // Number, 1
-            value: null,        // Number, center of slider
-            buffer: null,       // Number, in percent, 0 by default
-            stick: null,        // [Number stickTo, Number stickRadius] : use it if handle should stick to stickTo-th value in stickRadius
-            borderRadius: 10,    // Number, if you use buffer + border-radius in css for looks good,
-            onInit: function () {
-                console.info('onInit')
-            },
-            onSlideStart: function (position, value) {
-                console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
-            },
-            onSlide: function (position, value) {
-                console.log('onSlide', 'position: ' + position, 'value: ' + value);
-            },
-            onSlideEnd: function (position, value) {
-                console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
-            }
-        });
-
-        // then...
-        var giveMeSomeEvents = true; // or false
-        slider.rangeSlider.update({min : 0, max : 20, step : 0.5, value : 1.5, buffer : 70}, giveMeSomeEvents);
-        // or
-        slider.rangeSlider.onSlideStart: function (position, value) {
-            console.error('anotherCallback', 'position: ' + position, 'value: ' + value);
-        };
-
         $('#city-div').html('');
         $('#city-div2').html('');
         $('#city-div').append("<h3 id='salcomparison'>Compare Salaries Between Cities</h3><br />");
-        $('#city-div').append("<input type='range' min='0' max='10' step='1' data-buffer='60'/>");
+        $('#city-div').append("<div class='range-slider'><input class='range-slider__range' type='range' value='100' min='0' max='500' style='$shade-10: #2c3e50 !default;$shade-1: #d7dcdf !default;$shade-0: #fff !default;$teal: #1abc9c !default;* {&,&:before,&:after {box-sizing: border-box;}}body {font-family: sans-serif;padding: 60px 20px;@media (min-width: 600px) {padding: 60px;}}.range-slider {margin: 60px 0 0 0%;}$range-width: 100% !default;$range-handle-color: $shade-10 !default;$range-handle-color-hover: $teal !default;$range-handle-size: 20px !default;$range-track-color: $shade-1 !default;$range-track-height: 10px !default;$range-label-color: $shade-10 !default;$range-label-width: 60px !default;.range-slider {width: $range-width;}.range-slider__range {-webkit-appearance: none;width: calc(100% - (#{$range-label-width + 13px}));height: $range-track-height;border-radius: 5px;background: $range-track-color;outline: none;padding: 0;margin: 0;&::-webkit-slider-thumb {appearance: none;width: $range-handle-size;height: $range-handle-size;border-radius: 50%;background: $range-handle-color;cursor: pointer;transition: background .15s ease-in-out;&:hover {background: $range-handle-color-hover;}}&:active::-webkit-slider-thumb {background: $range-handle-color-hover;}&::-moz-range-thumb {width: $range-handle-size;height: $range-handle-size;border: 0;border-radius: 50%;background: $range-handle-color;cursor: pointer;transition: background .15s ease-in-out;&:hover {background: $range-handle-color-hover;}}&:active::-moz-range-thumb {background: $range-handle-color-hover;}}.range-slider__value {display: inline-block;position: relative;width: $range-label-width;color: $shade-0;line-height: 20px;text-align: center;border-radius: 3px;background: $range-label-color;padding: 5px 10px;margin-left: 8px;&:after {position: absolute;top: 8px;left: -7px;width: 0;height: 0;border-top: 7px solid transparent;border-right: 7px solid $range-label-color;border-bottom: 7px solid transparent;content: '';}}::-moz-range-track {background: $range-track-color;border: 0;}input::-moz-focus-inner,input::-moz-focus-outer { border: 0; }'><span class='range-slider__value'>0</span></div>");
         console.log(citySelection[0]);
         console.log(citySelection2[0]);
 
