@@ -6,6 +6,54 @@ var citySelection2 = [];
 
 window.onload = function() { 
 
+			var map = new L.Map('map');
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            var latitude = 29.97;
+            var longitude = -95.35;
+            var city = new L.LatLng(latitude, longitude);
+            map.setView(city,09);
+            var drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+            var drawControl = new L.Control.Draw({
+                draw: {
+                circle: false,
+                marker: false,
+                polyline: false
+                },
+                edit: {
+                    featureGroup: drawnItems
+                }
+            });
+            map.addControl(drawControl);
+            var markers = [];
+            var polygon = null;
+            map.on('draw:created', function (e) {
+                // remove markers and polygon from the last run
+                $.each (markers, function (i) { map.removeLayer(markers[i]) });
+                if (polygon != null) map.removeLayer (polygon);
+                var latLngs = $.map(e.layer.getLatLngs(), function(o) {
+                    return { name: "points", value: o.lat + "," + o.lng };
+                });
+                $.ajax({
+                    url: 'https://api.simplyrets.com/properties',
+                    data: latLngs,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa("simplyrets:simplyrets"))
+                    },
+                    success: function(data) {
+                        $.each (data, function (idx) {
+                            var markerLocation = new L.LatLng(data[idx].geo.lat, data[idx].geo.lng);
+                            var marker = new L.Marker(markerLocation);
+                            map.addLayer(marker);
+                            markers.push(marker);
+                        });
+                    }
+                });
+                polygon = e.layer;
+                map.addLayer(e.layer);
+            });
 // =======================================================================================================
 // USER AUTHENTICATION BEGINNING
 // =======================================================================================================
@@ -1750,51 +1798,30 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
     var rppsScore2 = [];
 
     $("#salaries").on("click", function(event) {
-        // Initialize a new plugin instance for element or array of elements.
-        var slider = document.querySelectorAll('input[type="range"]');
-        rangeSlider.create(slider, {
-            polyfill: true,     // Boolean, if true, custom markup will be created
-            rangeClass: 'rangeSlider',
-            disabledClass: 'rangeSlider--disabled',
-            fillClass: 'rangeSlider__fill',
-            bufferClass: 'rangeSlider__buffer',
-            handleClass: 'rangeSlider__handle',
-            startEvent: ['mousedown', 'touchstart', 'pointerdown'],
-            moveEvent: ['mousemove', 'touchmove', 'pointermove'],
-            endEvent: ['mouseup', 'touchend', 'pointerup'],
-            min: null,          // Number , 0
-            max: null,          // Number, 100
-            step: null,         // Number, 1
-            value: null,        // Number, center of slider
-            buffer: null,       // Number, in percent, 0 by default
-            stick: null,        // [Number stickTo, Number stickRadius] : use it if handle should stick to stickTo-th value in stickRadius
-            borderRadius: 10,    // Number, if you use buffer + border-radius in css for looks good,
-            onInit: function () {
-                console.info('onInit')
-            },
-            onSlideStart: function (position, value) {
-                console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
-            },
-            onSlide: function (position, value) {
-                console.log('onSlide', 'position: ' + position, 'value: ' + value);
-            },
-            onSlideEnd: function (position, value) {
-                console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
-            }
-        });
-
-        // then...
-        var giveMeSomeEvents = true; // or false
-        slider.rangeSlider.update({min : 0, max : 20, step : 0.5, value : 1.5, buffer : 70}, giveMeSomeEvents);
-        // or
-        slider.rangeSlider.onSlideStart = function (position, value) {
-            console.error('anotherCallback', 'position: ' + position, 'value: ' + value);
-        };
-
         $('#city-div').html('');
         $('#city-div2').html('');
         $('#city-div').append("<h3 id='salcomparison'>Compare Salaries Between Cities</h3><br />");
-        $('#city-div').append("<input type='range' min='0' max='10' step='1' data-buffer='60'/>");
+        $('#city-div').append("<div class='range-slider' style='opacity: 1;'><input class='range-slider__range' type='range' value='100' min='0' max='500' style='opacity: 1;'><span class='range-slider__value' style='opacity: 1;'>0</span></div>");
+        
+        var rangeSlider = function(){
+        var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+
+        slider.each(function(){
+
+          value.each(function(){
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+          });
+
+          range.on('input', function(){
+            $(this).next(value).html(this.value);
+          });
+        });
+      };
+      rangeSlider();
+
         console.log(citySelection[0]);
         console.log(citySelection2[0]);
 

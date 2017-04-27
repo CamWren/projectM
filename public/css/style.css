@@ -910,6 +910,19 @@ section.second-w3ls .profile-w3ls p {
 .tab-group li a {
 	font-size:15px;
 }
+
+
+
+.range-slider {
+	opacity: 1;
+}
+
+.range-slider__range {
+	opacity: 1;
+}
+
+.range-slider__value {
+	opacity: 1;
 }
 
 /*-- /responsive design --*/

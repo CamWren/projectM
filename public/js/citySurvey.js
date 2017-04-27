@@ -126,7 +126,7 @@ select10.addEventListener('change', function() {
 //function that gets the data from our public api
 
 function getCities(){
-  $.get("api/cities", function(data){
+  $.get("/api", function(data){
     
     for(var i=0; i <data.length; i++){
     
@@ -142,11 +142,13 @@ function getCities(){
                data[i].Fitness_Health,
                data[i].Safety,
                data[i].Nightlife_Bars,
-               data[i].Population_Density]
+               data[i].Population_Density],
+      latitude: data[i].Latitude,
+      longitude: data[i].Longitude
 
             }
     city_Scores.push(cities);        
-            
+            console.log(cities);
   }
 
   });
@@ -155,11 +157,13 @@ function getCities(){
 //function which finds the best city based on the survey results the user has entered.
 function myBestMatch() {
   
- console.log()
+// console.log()
   var bestMatch = {
     city: "",
     state: "",
-    cityDifference: 1000
+    cityDifference: 1000,
+    latitude: "",
+    longitude:""
   };
 
   var totalDifference = 0;
@@ -187,12 +191,16 @@ function myBestMatch() {
       bestMatch.city = city_Scores[i].city;
       bestMatch.state = city_Scores[i].state;
       bestMatch.cityDifference = totalDifference;
-      console.log(bestMatch.city)
+      bestMatch.latitude = city_Scores[i].latitude;
+      bestMatch.longitude = city_Scores[i].longitude;
+      console.log(bestMatch.city);
       $("#suggestedCity").html("<h4>Best Match: " + bestMatch.city + ", " + bestMatch.state + "</h4>");
     }
   }
 
   console.log(bestMatch);
-  console.log(values);
+
+ // console.log(values);
 };
 }
+module.exports = bestMatch;
