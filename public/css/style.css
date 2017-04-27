@@ -113,7 +113,7 @@ section.ui-w3ls {
 
 /*-- navigation --*/ 
 .navbar {
-	background-color: rgba(49, 46, 46, 0.49);
+background-color: rgba(0, 0, 0, 0);
     border-color:transparent;
 	margin-top:20px;
 }
@@ -224,6 +224,7 @@ label #city-input{
 #city-div{
 	float:left !important;
 	    margin-right: 92px;
+	    margin-left: 23px;
 
 
 }
@@ -281,7 +282,7 @@ a:hover + .test {
 	position: relative;
 	margin-left: 78px;
 
-text-align: left;
+text-align: center;
 }
 
 #city-input {
