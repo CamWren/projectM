@@ -70,7 +70,9 @@ var CitySchema = new Schema({
    Fitness_Health: Number,
    Safety: Number,
    Nightlife_Bars: Number,
-   Population_Density: Number
+   Population_Density: Number,
+   Latitude: Number,
+   Longitude: Number
 
 });
 var City = mongoose.model("Cities", CitySchema);

@@ -142,11 +142,13 @@ function getCities(){
                data[i].Fitness_Health,
                data[i].Safety,
                data[i].Nightlife_Bars,
-               data[i].Population_Density]
+               data[i].Population_Density],
+      latitude: data[i].Latitude,
+      longitude: data[i].Longitude
 
             }
     city_Scores.push(cities);        
-            //console.log(cities);
+            console.log(cities);
   }
 
   });
@@ -159,7 +161,9 @@ function myBestMatch() {
   var bestMatch = {
     city: "",
     state: "",
-    cityDifference: 1000
+    cityDifference: 1000,
+    latitude: "",
+    longitude:""
   };
 
   var totalDifference = 0;
@@ -187,7 +191,9 @@ function myBestMatch() {
       bestMatch.city = city_Scores[i].city;
       bestMatch.state = city_Scores[i].state;
       bestMatch.cityDifference = totalDifference;
-      console.log(bestMatch.city)
+      bestMatch.latitude = city_Scores[i].latitude;
+      bestMatch.longitude = city_Scores[i].longitude;
+      console.log(bestMatch.city);
       $("#suggestedCity").html("<h4>Best Match: " + bestMatch.city + ", " + bestMatch.state + "</h4>");
     }
   }

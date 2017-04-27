@@ -69,7 +69,9 @@ var CitySchemaPopulate1 = new Cities ({
    Fitness_Health: 6,
    Safety: 2,
    Nightlife_Bars: 3,
-   Population_Density: 3
+   Population_Density: 3,
+   Latitude: 30.27,
+   Longitude: -97.74
 
 });
 
@@ -97,7 +99,9 @@ var CitySchemaPopulate2 = new Cities ({
    Fitness_Health: 2,
    Safety: 4,
    Nightlife_Bars: 4,
-   Population_Density: 4
+   Population_Density: 4,
+   Latitude: 39.74,
+   Longitude: -105
 
 });
 
@@ -125,7 +129,9 @@ var CitySchemaPopulate3 = new Cities ({
    Fitness_Health: 3,
    Safety: 5,
    Nightlife_Bars: 3,
-   Population_Density: 7
+   Population_Density: 7,
+   Latitude: 47.61,
+   Longitude: -122.33
 
 });
 
@@ -153,7 +159,9 @@ var CitySchemaPopulate4 = new Cities ({
    Fitness_Health: 3,
    Safety: 9,
    Nightlife_Bars: 1,
-   Population_Density: 10
+   Population_Density: 10,
+   Latitude: 40.71,
+   Longitude: -74
 
 });
 
@@ -182,7 +190,9 @@ var CitySchemaPopulate5 = new Cities ({
    Fitness_Health: 4,
    Safety: 8,
    Nightlife_Bars: 2,
-   Population_Density: 8
+   Population_Density: 8,
+   Latitude: 34.05,
+   Longitude: -118.24
 
 });
 
@@ -211,7 +221,10 @@ var CitySchemaPopulate6 = new Cities ({
    Fitness_Health: 8,
    Safety: 8,
    Nightlife_Bars: 6,
-   Population_Density: 5
+   Population_Density: 5,
+   Latitude: 33.75,
+   Longitude: -84.39
+
 
 });
 
@@ -239,7 +252,9 @@ var CitySchemaPopulate7 = new Cities ({
    Fitness_Health: 1,
    Safety: 10,
    Nightlife_Bars: 5,
-   Population_Density: 9
+   Population_Density: 9,
+   Latitude: 41.88,
+   Longitude: -87.63
 
 });
 
@@ -267,7 +282,9 @@ var CitySchemaPopulate8 = new Cities ({
    Fitness_Health: 7,
    Safety: 1,
    Nightlife_Bars: 9,
-   Population_Density: 1
+   Population_Density: 1,
+   Latitude: 43.62,
+   Longitude: -116.21
 
 });
 
@@ -295,7 +312,9 @@ var CitySchemaPopulate9 = new Cities ({
    Fitness_Health: 8,
    Safety: 6,
    Nightlife_Bars: 7,
-   Population_Density: 8
+   Population_Density: 8,
+   Latitude: 39.95,
+   Longitude: -75.16
 
 });
 
@@ -323,7 +342,9 @@ var CitySchemaPopulate10 = new Cities ({
    Fitness_Health: 9,
    Safety: 7,
    Nightlife_Bars: 8,
-   Population_Density: 6
+   Population_Density: 6,
+   Latitude: 40.44,
+   Longitude: -80
 
 });
 
@@ -351,7 +372,9 @@ var CitySchemaPopulate11 = new Cities ({
    Fitness_Health: 10,
    Safety: 3,
    Nightlife_Bars: 8,
-   Population_Density: 2
+   Population_Density: 2,
+   Latitude: 35.47,
+   Longitude: -97.52
 
 });
 
@@ -380,7 +403,9 @@ var CitySchemaPopulate12 = new Cities ({
    Fitness_Health: 5,
    Safety: 3,
    Nightlife_Bars: 10,
-   Population_Density: 3
+   Population_Density: 3,
+   Latitude: 21.31,
+   Longitude: -157.86
 
 });
 
@@ -411,6 +436,8 @@ app.get("/api", function(req, res) {
 });
 
 
+
+app.post
 
 
 
