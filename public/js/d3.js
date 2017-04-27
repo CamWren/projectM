@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
     console.log( "ready!" );
     $("#general").on('click', function(){
 
@@ -236,5 +236,5 @@ $(document).ready(function() {
 
 
 });
-});
+
 
