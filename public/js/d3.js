@@ -2,8 +2,15 @@ $(document).ready(function() {
     console.log( "ready!" );
     $("#general").on('click', function(){
 
+
+
     var city = $("#city-input").val().trim();
     var city2 = $("#city-input2").val().trim();
+
+    if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
     console.log(city);
     console.log(city2);
 	getCityNumbers(city,city2);
@@ -12,6 +19,9 @@ $(document).ready(function() {
 
     function getCityNumbers(city, city2) {
         function objCreate(keyName, value) {
+            if(value == undefined){
+                alert("Due to the limits of the Numbeo API, one of these cities that you've chosen has no data associated with it. Please reselect.")
+            }
         var newValue = value.toFixed(1);
         newValue = parseInt(newValue);
         var objectName = {
