@@ -20,7 +20,12 @@ body,html{
 	color: black;
 }
 
-div#imageContainer{ 
-	width: 300px !important;
-	height: 400px !important;
+#logoMIGRATE{
+margin-bottom: -63px; 
+margin-top: -32px;
+
+}
+
+g.display{
+	    transform: translate(110, 58);
 }

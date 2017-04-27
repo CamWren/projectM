@@ -8,6 +8,7 @@
 	.st2{fill:#FFFFFF;stroke:orange;stroke-width:2;}
 	.st3{font-family:'ArialNarrow';}
 	.st4{font-size:129px;}
+	
 </style>
 <g>
 	<path class="st0" d="M618.6,152.9c0,5.5-4.5,10-10,10H10c-5.5,0-10-4.5-10-10V10C0,4.5,4.5,0,10,0h598.6c5.5,0,10,4.5,10,10V152.9z

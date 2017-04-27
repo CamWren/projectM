@@ -1,7 +1,12 @@
-$( document ).ready(function() {
+$(document).ready(function() {
     console.log( "ready!" );
-    $("#salaries").on('click', function(){
-	getCityNumbers("Austin","Denver");
+    $("#general").on('click', function(){
+
+    var city = $("#city-input").val().trim();
+    var city2 = $("#city-input2").val().trim();
+    console.log(city);
+    console.log(city2);
+	getCityNumbers(city,city2);
 
 
 
@@ -100,7 +105,7 @@ $( document ).ready(function() {
 
 
 
-
+            $("svg").remove();
 
 
                                 var w = 800;

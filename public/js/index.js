@@ -1787,7 +1787,7 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
         var giveMeSomeEvents = true; // or false
         slider.rangeSlider.update({min : 0, max : 20, step : 0.5, value : 1.5, buffer : 70}, giveMeSomeEvents);
         // or
-        slider.rangeSlider.onSlideStart: function (position, value) {
+        slider.rangeSlider.onSlideStart = function (position, value) {
             console.error('anotherCallback', 'position: ' + position, 'value: ' + value);
         };
 

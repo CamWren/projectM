@@ -224,6 +224,7 @@ label #city-input{
 #city-div{
 	float:left !important;
 	    margin-right: 92px;
+	    margin-left: 23px;
 
 
 }
@@ -281,7 +282,7 @@ a:hover + .test {
 	position: relative;
 	margin-left: 78px;
 
-text-align: left;
+text-align: center;
 }
 
 #city-input {
