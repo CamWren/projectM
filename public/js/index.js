@@ -1804,23 +1804,23 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
         $('#city-div').append("<div class='range-slider' style='opacity: 1;'><input class='range-slider__range' type='range' value='100' min='0' max='500' style='opacity: 1;'><span class='range-slider__value' style='opacity: 1;'>0</span></div>");
         
         var rangeSlider = function(){
-		  var slider = $('.range-slider'),
-		      range = $('.range-slider__range'),
-		      value = $('.range-slider__value');
-		    
-		  slider.each(function(){
+        var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
 
-		    value.each(function(){
-		      var value = $(this).prev().attr('value');
-		      $(this).html(value);
-		    });
+        slider.each(function(){
 
-		    range.on('input', function(){
-		      $(this).next(value).html(this.value);
-		    });
-		  });
-		};
-		rangeSlider();
+          value.each(function(){
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+          });
+
+          range.on('input', function(){
+            $(this).next(value).html(this.value);
+          });
+        });
+      };
+      rangeSlider();
 
         console.log(citySelection[0]);
         console.log(citySelection2[0]);
