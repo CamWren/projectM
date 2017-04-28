@@ -30,3 +30,20 @@ body,html{
 g.display{
 	    transform: translate(110, 58);
 }
+
+td, th {
+	padding: 10px !important;
+	    border: 2px solid #24343b;
+	        background-color: rgba(146, 162, 168, 0.39);;
+	        text-align: center;
+}
+
+th {
+    background-color: #efa656;
+    color: black;
+    border: 2px solid #24343b;
+}
+
+.month{
+	background-color: rgb(79, 110, 123);
+}

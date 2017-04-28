@@ -239,98 +239,98 @@ $("#submitButton").on("click", function(event) {
     });
 });
 
-    $("#rent").on("click", function(event) {
+    // $("#rent").on("click", function(event) {
 
 
-        var city = $("#city-input").val().trim();
+    //     var city = $("#city-input").val().trim();
 
 
 
-        var queryURL = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city;
+    //     var queryURL = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city;
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //     })
 
-        .done(function(response) {
+    //     .done(function(response) {
 
-            var results1rent1 = JSON.stringify(response.prices[21].average_price);
+    //         var results1rent1 = JSON.stringify(response.prices[21].average_price);
 
-            var results2rent1 = response.prices[19].average_price;
+    //         var results2rent1 = response.prices[19].average_price;
 
-            results2rent1 = (3.78541 * results2rent1).toFixed(2);
+    //         results2rent1 = (3.78541 * results2rent1).toFixed(2);
 
-            var results3rent1 = response.prices[22].average_price;
+    //         var results3rent1 = response.prices[22].average_price;
 
-            results3rent1 = (results3rent1).toFixed(2);
+    //         results3rent1 = (results3rent1).toFixed(2);
 
-            var results4rent1 = response.prices[7].average_price;
+    //         var results4rent1 = response.prices[7].average_price;
 
-            results4rent1 = (3.78541 * results4rent1).toFixed(2);
+    //         results4rent1 = (3.78541 * results4rent1).toFixed(2);
 
 
 
-            $('#city-div').html('');
+    //         $('#city-div').html('');
 
-            $('#city-div').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent1);
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent1);
+    //         $('#city-div').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent1);
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent1);
 
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Average Gas Price per Gallon = $" + results2rent1);
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Gas Price per Gallon = $" + results2rent1);
 
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Average Milk Price per Gallon = $" + results4rent1);
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Milk Price per Gallon = $" + results4rent1);
 
 
-        });
+    //     });
 
-        var city2 = $("#city-input2").val().trim();
+    //     var city2 = $("#city-input2").val().trim();
 
 
 
-        var queryURL2 = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city2;
+    //     var queryURL2 = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city2;
 
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-        })
+    //     $.ajax({
+    //         url: queryURL2,
+    //         method: "GET"
+    //     })
 
-        .done(function(response) {
+    //     .done(function(response) {
 
-            var results1rent2 = response.prices[21].average_price;
+    //         var results1rent2 = response.prices[21].average_price;
 
-            results1rent2 = (results1rent2).toFixed(2);
+    //         results1rent2 = (results1rent2).toFixed(2);
 
-            var results2rent2 = response.prices[19].average_price;
+    //         var results2rent2 = response.prices[19].average_price;
 
-            results2rent2 = (3.78541 * results2rent2).toFixed(2);
+    //         results2rent2 = (3.78541 * results2rent2).toFixed(2);
 
-            var results3rent2 = response.prices[22].average_price;
+    //         var results3rent2 = response.prices[22].average_price;
 
-            results3rent2 = (results3rent2).toFixed(2);
+    //         results3rent2 = (results3rent2).toFixed(2);
 
-            var results4rent2 = response.prices[7].average_price;
+    //         var results4rent2 = response.prices[7].average_price;
 
-            results4rent2 = (3.78541 * results4rent2).toFixed(2);
+    //         results4rent2 = (3.78541 * results4rent2).toFixed(2);
 
 
 
-            $('#city-div2').html('');
+    //         $('#city-div2').html('');
 
-            $('#city-div2').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent2);
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent2);
+    //         $('#city-div2').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent2);
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent2);
 
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Average Gas Price per Gallon = $" + results2rent2);
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Gas Price per Gallon = $" + results2rent2);
 
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Average Milk Price per Gallon = $" + results4rent2);
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Milk Price per Gallon = $" + results4rent2);
 
 
-        });
+    //     });
 
 
 
@@ -340,117 +340,9 @@ $("#submitButton").on("click", function(event) {
 
 
 
-    });
+    // });
 
-    $("#air").on("click", function(event) {
-
-
-        var city = $("#city-input").val().trim();
-
-
-
-        var queryURL = "https://www.numbeo.com/api/city_pollution?api_key=6b2rzozbl9v8lu&query=" + city;
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-            var results1air1 = response.air_quality;
-            
-            var results1air1 = ((results1air1 + 2) * 20).toFixed(0);
-
-            var results2air1 = response.green_and_parks_quality;
-
-            var results2air1 = ((results2air1 + 2) * 20).toFixed(0);
-
-            var results3air1 = response.index_pollution.toFixed(0);
-
-            var results4air1 = response.noise_and_light_pollution;
-
-            var results4air1 = ((results4air1 + 2) * 20).toFixed(0);
-
-
-            $('#city-div').html('');
-
-            $('#city-div').append("<table>");
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td> Air Quality: </td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results1air1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Green and Parks Quality: </td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results2air1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Pollution Index:</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results3air1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Noise & Light Pollution: </td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results4air1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-            $('#city-div').append("</table>");
-        });
-
-        var city2 = $("#city-input2").val().trim();
-
-
-
-        var queryURL2 = "https://www.numbeo.com/api/city_pollution?api_key=6b2rzozbl9v8lu&query=" + city2;
-
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-            var results1air2 = response.air_quality;
-
-            var results1air2 = ((results1air2 + 2) * 20).toFixed(0);
-
-            var results2air2 = response.green_and_parks_quality;
-
-            var results2air2 = ((results2air2 + 2) * 20).toFixed(0);
-
-            var results3air2 = response.index_pollution.toFixed(0);
-
-            var results4air2 = response.noise_and_light_pollution;
-
-            var results4air2 = ((results4air2 + 2) * 20).toFixed(0);
-
-
-            $('#city-div2').html('');
-
-            $('#city-div2').append("<table>");
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> Air Quality: </td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results1air2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Green and Parks Quality: </td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results2air2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Pollution Index:</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results3air2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Noise & Light Pollution: </td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results4air2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-            $('#city-div2').append("</table>");
-        });
-
-
-
-    });
-
-
-
+   
 
 
 

@@ -255,14 +255,30 @@ label #city-input{
 
 #city-div{
 	float:left !important;
-	    margin-right: 92px;
-	    margin-left: 23px;
+margin-right: 12px;
+    margin-left: 3px;
+	    width: 362px;
+
+	        padding: 12px;
+	        text-align: left;
 
 
 }
 
 #city-div2{
 	float:left !important;
+	 margin-right: 23px;
+	    margin-left: 23px;
+	    width: 362px;
+
+	        padding: 12px;
+	        text-align: left;
+
+#containerElement{
+	border: 1px solid ;
+}
+
+
 	
 
 	}
@@ -597,7 +613,7 @@ section.second-w3ls .content div h3{
 section.second-w3ls .content div p {
 	font-size: 16px;
 	font-weight:normal;
-	line-height:35px;
+	line-height:17px !important;
 	text-align:justify;
 	margin: 0;
 	color: #fff;
@@ -947,5 +963,6 @@ section.second-w3ls .profile-w3ls p {
 	font-size:15px;
 }
 }
+
 
 /*-- /responsive design --*/
