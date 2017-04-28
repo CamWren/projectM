@@ -47,3 +47,7 @@ th {
 .month{
 	background-color: rgb(79, 110, 123);
 }
+
+#buttonContainer{
+	margin-top: 31px;
+}

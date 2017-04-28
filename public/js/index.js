@@ -1,3 +1,5 @@
+$( document ).ready(function() {
+
 // =======================================================================================================
 // GLOBAL VARIABLES
 var citySelection = [];
@@ -41,9 +43,16 @@ var userIp = [];
   });
 
 $("#submitButton").on("click", function(event) {
+
+    var city = $("#city-input").val().trim().toLowerCase();
+
+      var city2 = $("#city-input2").val().trim().toLowerCase();
    event.preventDefault();
+
+
    console.log("SUCCESS!!!!!!!!");
      $('#city-div').html('');
+      
             $('#city-div').append(function(event){
 
                     var city = $("#city-input").val().trim().toLowerCase();
@@ -52,192 +61,61 @@ $("#submitButton").on("click", function(event) {
                     citySelection.push(sitee);
                     console.log(citySelection);
 
-        var queryURL = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city;
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-            var results1num1 = response.health_care_index;
-            var results1num1 = (results1num1).toFixed(0);
-
-            var results2num1 = response.crime_index;
-            var results2num1 = (results2num1).toFixed(0);
-
-            var results3num1 = response.traffic_time_index;
-            var results3num1 = (results3num1).toFixed(0);
-
-            var results4num1 = response.quality_of_life_index;
-            var results4num1 = (results4num1).toFixed(0);
-
-
-            var results5num1 = response.safety_index;
-            var results5num1 = (results5num1).toFixed(0);
-
-
-            var results6num1 = response.rent_index;
-            var results6num1 = (results6num1).toFixed(0);
-
-
-            var results7num1 = response.pollution_index;
-            var results7num1 = (results7num1).toFixed(0);
-
-            var results8num1 = response.groceries_index;
-            var results8num1 = (results8num1).toFixed(0);
-
-            $('#city-div').html('');
-
-            $('#city-div').prepend("Healthcare Index: " + results1num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Health Care Index is an estimation of the overall quality of the health care system, health care professionals, equipment, staff, doctors, cost, etc.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Crime Index: " + results2num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Crime Index is an estimation of overall level of crime in a given city or a country. We consider crime levels lower than 20 as very low, crime levels between 20 and 40 as being low, crime levels between 40 and 60 as being moderate, crime levels between 60 and 80 as being high and finally crime levels higher than 80 as being very high.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Traffic Index: " + results3num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Traffic Index is a composite index of time consumed in traffic due to job commute, estimation of time consumption dissatisfaction, CO2 consumption estimation in traffic and overall inefficiencies in the traffic system.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Quality of Life Index: " + results4num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Quality of Life Index (higher is better) is an estimation of overall quality of life by using empirical formula which takes into account purchasing power index (higher is better), pollution index (lower is better), house price to income ratio (lower is better), cost of living index (lower is better), safety index (higher is better), health care index (higher is better), traffic commute time index (lower is better) and climate index (higher is better).</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Safety Index: " + results5num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Safety index is, on the other way, quite opposite of crime index. If the city has a high safety index, it is considered very safe.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Rent Index: " + results6num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Rent Index is estimation of prices of renting apartments in the city compared to New York City. If Rent index is 80, Numbeo estimates that price for renting in that city is 80% of price in New York.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Pollution Index: " + results7num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Pollution Index is an estimation of the overall pollution in the city. The biggest weight is given to air pollution, than to water pollution/accessibility, two main pollution factors. Small weight is given to other pollution types.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Groceries Index: " + results8num1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Groceries Index is an estimation of grocery prices in the city compared to New York City.</div>");
-        });
-
         var city2 = $("#city-input2").val().trim().toLowerCase();
         // Different variable pushes to global variable citySelection2 without formatting to be used for salary calculation
         var sitee2 = $("#city-input2").val().trim();
         citySelection2.push(sitee2);
         console.log(citySelection2);
+            if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
 
 
-        var queryURL2 = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city2;
+        var queryURL = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city;
+
 
         $.ajax({
-            url: queryURL2,
-            method: "GET"
+        url: queryURL,
+        method: "GET"
         })
-
         .done(function(response) {
+            var queryURL2 = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city2;
 
-            var results1num2 = response.health_care_index;
-            var results1num2 = (results1num2).toFixed(0);
+                $.ajax({
+                url: queryURL2,
+                method: "GET"
+                })
+                .done(function(response2) {
 
-            var results2num2 = response.crime_index;
-            var results2num2 = (results2num2).toFixed(0);
+                    if( response2.crime_index == undefined || response.crime_index == undefined){
+                        alert("Due to the limits of the Numbeo API, one of these cities that you've chosen has no data associated with it. Please reselect.");
+                        return;
 
-            var results3num2 = response.traffic_time_index;
-            var results3num2 = (results3num2).toFixed(0);
+                    } else { 
 
-            var results4num2 = response.quality_of_life_index;
-            var results4num2 = (results4num2).toFixed(0);
+                                   $("#tab-1").prop("checked", true)
 
-
-            var results5num2 = response.safety_index;
-            var results5num2 = (results5num2).toFixed(0);
-
-
-            var results6num2 = response.rent_index;
-            var results6num2 = (results6num2).toFixed(0);
-
-
-            var results7num2 = response.pollution_index;
-            var results7num2 = (results7num2).toFixed(0);
-
-            var results8num2 = response.groceries_index;
-            var results8num2 = (results8num2).toFixed(0);
-
-            $('#city-div2').html('');
-
-            $('#city-div2').prepend("Healthcare Index: " + results1num2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Health Care Index is an estimation of the overall quality of the health care system, health care professionals, equipment, staff, doctors, cost, etc.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Crime Index: " + results2num2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Crime Index is an estimation of overall level of crime in a given city or a country. We consider crime levels lower than 20 as very low, crime levels between 20 and 40 as being low, crime levels between 40 and 60 as being moderate, crime levels between 60 and 80 as being high and finally crime levels higher than 80 as being very high.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Traffic Index: " + results3num2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Traffic Index is a composite index of time consumed in traffic due to job commute, estimation of time consumption dissatisfaction, CO2 consumption estimation in traffic and overall inefficiencies in the traffic system.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Quality of Life Index: " + results4num2);
-                      $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Quality of Life Index (higher is better) is an estimation of overall quality of life by using empirical formula which takes into account purchasing power index (higher is better), pollution index (lower is better), house price to income ratio (lower is better), cost of living index (lower is better), safety index (higher is better), health care index (higher is better), traffic commute time index (lower is better) and climate index (higher is better).</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Safety Index: " + results5num2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Safety index is, on the other way, quite opposite of crime index. If the city has a high safety index, it is considered very safe.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Rent Index: " + results6num2);
-                       $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Rent Index is estimation of prices of renting apartments in the city compared to New York City. If Rent index is 80, Numbeo estimates that price for renting in that city is 80% of price in New York.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Pollution Index: " + results7num2);
-                        $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Pollution Index is an estimation of the overall pollution in the city. The biggest weight is given to air pollution, than to water pollution/accessibility, two main pollution factors. Small weight is given to other pollution types.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Groceries Index: " + results8num2);
-                        $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Groceries Index is an estimation of grocery prices in the city compared to New York City.</div>");
-        });
-    });        
+                                     $('#city-div').html("Use the buttons above to compare.");
+                              $('#city-div2').html('');
+     
 
 
 
-    var city = $("#city-input").val().trim();
+                    };
+
+                });
 
 
-    $("#compareCities").on("click", function(event) {
 
-        var city = $("#city-input").val().trim();
-        console.log(city);
 
-        var queryURL = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city;
+                });
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
 
-        .done(function(response) {
 
-            var resultsCity = response.prices[19].average_price;
-
-            resultsCity = (3.78541 * resultsCity).toFixed(2)
-
-            $('#city-div').html('');
-            $('#city-div').prepend("<p>Average Gas Price per Gallon = $" + resultsCity + "</p>");
 
         });
-
-
-        var city2 = $("#city-input2").val().trim();
-        console.log(city2);
-
-        var queryURL2 = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city2;
-
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-            var resultsCity2 = response.prices[19].average_price;
-
-            resultsCity2 = (3.78541 * resultsCity2).toFixed(2)
-
-            $('#city-div2').html('');
-            $('.content').prepend("Average Gas Price per Gallon = $" + resultsCity2);
-
         });
-
-    });
-});
 
     // $("#rent").on("click", function(event) {
 
@@ -348,553 +226,17 @@ $("#submitButton").on("click", function(event) {
 
 
 
-    $("#crime").on("click", function(event) {
+    
 
 
-        var city = $("#city-input").val().trim();
-
-
-
-        var queryURL = "https://www.numbeo.com/api/city_crime?api_key=6b2rzozbl9v8lu&query=" + city;
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-            var results1crime1 = response.index_crime;
-
-            var results1crime1 = results1crime1.toFixed(0);
-
-            var results2crime1 = response.problem_property_crimes;
-
-
-            var results2crime1 = ((results2crime1 + 2) * 20).toFixed(0);
-
-            var results3crime1 = response.worried_car_stolen;
-
-            var results3crime1 = ((results3crime1 + 2) * 20).toFixed(0);
-
-            $('#city-div').html('');
-            $('#city-div').append("<table>");
-            $('#city-div').append("<tr>");
-                        $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Crime Index is an estimation of overall level of crime in a given city or a country. We consider crime levels lower than 20 as very low, crime levels between 20 and 40 as being low, crime levels between 40 and 60 as being moderate, crime levels between 60 and 80 as being high and finally crime levels higher than 80 as being very high.</div></td>");
-
-            $('#city-div').append("<td>Crime Index: </td>");
-
-            $('#city-div').append("<td><progress id='myProgress' value=" + results1crime1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-            $('#city-div').append("<tr>");
-                        $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
-            $('#city-div').append("<td>Property Crime: </td>");
-
-            $('#city-div').append("<td><progress id='myProgress' value=" + results2crime1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-            $('#city-div').append("<tr>");
-                                    $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
-
-            $('#city-div').append("<td>Car Stolen Index: </td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results3crime1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-            $('#city-div').append("</table>");
-
-        });
-
-        var city2 = $("#city-input2").val().trim();
-
-
-
-        var queryURL2 = "https://www.numbeo.com/api/city_crime?api_key=6b2rzozbl9v8lu&query=" + city2;
-
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-            var results1crime2 = response.index_crime;
-
-            var results1crime2 = results1crime2.toFixed(0);
-
-            var results2crime2 = response.problem_property_crimes;
-
-
-            var results2crime2 = ((results2crime2 + 2) * 20).toFixed(0);
-
-            var results3crime2 = response.worried_car_stolen;
-
-            var results3crime2 = ((results3crime2 + 2) * 20).toFixed(0);
-
-            $('#city-div2').html('');
-            $('#city-div2').append("<table>");
-            $('#city-div2').append("<tr>");
-
-                        $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Crime Index is an estimation of overall level of crime in a given city or a country. We consider crime levels lower than 20 as very low, crime levels between 20 and 40 as being low, crime levels between 40 and 60 as being moderate, crime levels between 60 and 80 as being high and finally crime levels higher than 80 as being very high.</div></td>");
-            $('#city-div2').append("<td>Crime Index: </td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results1crime2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-            $('#city-div2').append("<tr>");
-
-                        $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
-            $('#city-div2').append("<td>Property Crime: </td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results2crime2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-            $('#city-div2').append("<tr>");
-
-                                    $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
-
-            $('#city-div2').append("<td>Car Stolen Index: </td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results3crime2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-            $('#city-div2').append("</table>");
-
-        });
-
-    });
-
-
-
-
-    $("#weather").on("click", function(event) {
-
-
-        var city = $("#city-input").val().trim();
-
-
-
-        var queryURL = "https://www.numbeo.com/api/city_climate?api_key=6b2rzozbl9v8lu&query=" + city;
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-
-        .done(function(response) {
-            $('#city-div').html('');
-
-            var results1weather1 = response.climate_index.toFixed(0);
-
-            var results2weather1 = response.best_months_to_visit_text;
-            $('#city-div').append(results2weather1);
-            $('#city-div').append("<table>");
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<th>Month</th");
-            $('#city-div').append("<th>Avg Low Temp <html>&#x2109 </html></th");
-            $('#city-div').append("<th>Avg High Temp <html>&#x2109 </html></th");
-            $('#city-div').append("</tr>");
-
-            for (var i = 1; i < 12; i++) {
-
-                var monthlow1weather1 = response.months[i].temp_low_avg;
-                monthlow1weather1 = JSON.stringify(monthlow1weather1);
-                monthlow1weather1 = (monthlow1weather1 * 9) / 5 + 32;
-
-                var monthhigh1weather1 = response.months[i].temp_high_avg;
-                monthhigh1weather1 = JSON.stringify(monthhigh1weather1);
-                monthhigh1weather1 = (monthhigh1weather1 * 9) / 5 + 32;
-
-
-
-                $('#city-div').append("<tr>");
-
-
-                switch (i) {
-                    case (1):
-                        $('#city-div').append("<td>January</td>");
-                        break;
-                    case (2):
-                        $('#city-div').append("<td>Febuary</td>");
-                        break;
-                    case (3):
-                        $('#city-div').append("<td>March</td>");
-                        break;
-                    case (4):
-                        $('#city-div').append("<td>April</td>");
-                        break;
-                    case (5):
-                        $('#city-div').append("<td>May</td>");
-                        break;
-                    case (6):
-                        $('#city-div').append("<td>June</td>");
-                        break;
-                    case (7):
-                        $('#city-div').append("<td>July</td>");
-                        break;
-                    case (8):
-                        $('#city-div').append("<td>August</td>");
-                        break;
-                    case (9):
-                        $('#city-div').append("<td>September</td>");
-                        break;
-                    case (10):
-                        $('#city-div').append("<td>October</td>");
-                        break;
-                    case (11):
-                        $('#city-div').append("<td>November</td>");
-                        break;
-                    case (12):
-                        $('#city-div').append("<td>December</td>");
-                        break;
-                }
-
-
-                $('#city-div').append("<td>" + monthlow1weather1 + "</td>");
-                $('#city-div').append("<td>" + monthhigh1weather1 + "</td>");
-                $('#city-div').append("</tr>");
-
-            };
-
-            $('#city-div').append("<table>");
-
-
-
-
-        });
-
-        var city2 = $("#city-input2").val().trim();
-
-
-
-        var queryURL2 = "https://www.numbeo.com/api/city_climate?api_key=6b2rzozbl9v8lu&query=" + city2;
-
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-        })
-
-        .done(function(response) {
-            $('#city-div2').html('');
-
-            var results1weather2 = response.climate_index.toFixed(0);
-
-            var results2weather2 = response.best_months_to_visit_text;
-            $('#city-div2').append(results2weather2);
-            $('#city-div2').append("<table>");
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<th>Month</th");
-            $('#city-div2').append("<th>Avg Low Temp <html>&#x2109 </html></th");
-            $('#city-div2').append("<th>Avg High Temp <html>&#x2109 </html></th");
-            $('#city-div2').append("</tr>");
-
-            for (var i = 1; i < 12; i++) {
-
-                var monthlow2weather2 = response.months[i].temp_low_avg;
-                monthlow2weather2 = JSON.stringify(monthlow2weather2);
-                monthlow2weather2 = (monthlow2weather2 * 9) / 5 + 32;
-
-                var monthhigh2weather2 = response.months[i].temp_high_avg;
-                monthhigh2weather2 = JSON.stringify(monthhigh2weather2);
-                monthhigh2weather2 = (monthhigh2weather2 * 9) / 5 + 32;
-
-
-
-                $('#city-div2').append("<tr>");
-
-
-                switch (i) {
-                    case (1):
-                        $('#city-div2').append("<td>January</td>");
-                        break;
-                    case (2):
-                        $('#city-div2').append("<td>Febuary</td>");
-                        break;
-                    case (3):
-                        $('#city-div2').append("<td>March</td>");
-                        break;
-                    case (4):
-                        $('#city-div2').append("<td>April</td>");
-                        break;
-                    case (5):
-                        $('#city-div2').append("<td>May</td>");
-                        break;
-                    case (6):
-                        $('#city-div2').append("<td>June</td>");
-                        break;
-                    case (7):
-                        $('#city-div2').append("<td>July</td>");
-                        break;
-                    case (8):
-                        $('#city-div2').append("<td>August</td>");
-                        break;
-                    case (9):
-                        $('#city-div2').append("<td>September</td>");
-                        break;
-                    case (10):
-                        $('#city-div2').append("<td>October</td>");
-                        break;
-                    case (11):
-                        $('#city-div2').append("<td>November</td>");
-                        break;
-                    case (12):
-                        $('#city-div2').append("<td>December</td>");
-                        break;
-                }
-
-
-                $('#city-div2').append("<td>" + monthlow2weather2 + "</td>");
-                $('#city-div2').append("<td>" + monthhigh2weather2 + "</td>");
-                $('#city-div2').append("</tr>");
-
-            };
-
-            $('#city-div2').append("<table>");
-
-
-
-
-        });
-
-
-
-
-    });
-
-
-
-
-
-
-
-    $("#traffic").on("click", function(event) {
-
-
-        var city = $("#city-input").val().trim();
-
-        console.log(city);
-
-        var queryURL = "https://www.numbeo.com/api/city_traffic?api_key=6b2rzozbl9v8lu&query=" + city;
-
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-
-            var results1traffic1 = response.primary_means_percentage_map.Car;
-            results1traffic1 = results1traffic1;
-            results1traffic1 = (results1traffic1).toFixed(0);
-
-            var results2traffic1 = response.primary_means_percentage_map.Bike;
-            results2traffic1 = results2traffic1;
-            results2traffic1 = (results2traffic1).toFixed(0);
-
-            var results3traffic1 = response.primary_means_percentage_map.Walking;
-            results3traffic1 = results3traffic1;
-            results3traffic1 = (results3traffic1).toFixed(0);
-
-            var results4traffic1 = response.primary_means_percentage_map.Bus;
-            results4traffic1 = results4traffic1;
-            if (results4traffic1 == null) {
-                results4traffic1 = "0";
-            } else {
-                results4traffic1 = (results4traffic1).toFixed(0);
-            };
-
-
-            var results5traffic1 = response.primary_means_percentage_map.Motorbike;
-            results5traffic1 = results5traffic1;
-            if (results5traffic1 == null) {
-                results5traffic1 = "0";
-            } else {
-                results5traffic1 = (results5traffic1).toFixed(0);
-            };
-
-
-            var results6traffic1 = response.primary_means_percentage_map.Working_from_Home;
-            results6traffic1 = results6traffic1;
-            if (results6traffic1 == null) {
-                results6traffic1 = "0";
-            } else {
-                results6traffic1 = (results6traffic1).toFixed(0);
-            };
-
-            var results7traffic1 = response.primary_means_percentage_map.Train;
-            results7traffic1 = results7traffic1;
-            if (results7traffic1 == null) {
-                results7traffic1 = "0";
-            } else {
-                results7traffic1 = (results7traffic1).toFixed(0);
-            };
-
-            var results8traffic1 = parseInt(results1traffic1) + parseInt(results2traffic1) + parseInt(results3traffic1) + parseInt(results4traffic1) + parseInt(results5traffic1) + parseInt(results6traffic1) + parseInt(results7traffic1);
-            results8traffic1 = 100 - results8traffic1;
-            results8traffic1 = results8traffic1.toFixed(0);
-
-
-            $('#city-div').html('');
-            $('#city-div').append("Main Means of Transportation");
-            $('#city-div').append("<br>");
-            $('#city-div').append("<br>");
-            $('#city-div').append("<table>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Car</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results1traffic1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Bike</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results2traffic1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Walking</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results3traffic1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Bus</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results4traffic1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Motorbike</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results5traffic1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Working from Home</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results6traffic1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Train</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results7traffic1 + " max='100'></progress></td>");
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("<tr>");
-            $('#city-div').append("<td>Other</td>");
-            $('#city-div').append("<td><progress id='myProgress' value=" + results8traffic1 + " max='100'></progress></td>");
-
-            $('#city-div').append("</tr>");
-
-            $('#city-div').append("</table>");
-
-        });
-
-        var city2 = $("#city-input2").val().trim();
-
-        console.log(city2);
-
-        var queryURL2 = "https://www.numbeo.com/api/city_traffic?api_key=6b2rzozbl9v8lu&query=" + city2;
-
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-
-            var results1traffic2 = response.primary_means_percentage_map.Car;
-            results1traffic2 = results1traffic2;
-            results1traffic2 = (results1traffic2).toFixed(0);
-
-            var results2traffic2 = response.primary_means_percentage_map.Bike;
-            results2traffic2 = results2traffic2;
-            results2traffic2 = (results2traffic2).toFixed(0);
-
-            var results3traffic2 = response.primary_means_percentage_map.Walking;
-            results3traffic2 = results3traffic2;
-            results3traffic2 = (results3traffic2).toFixed(0);
-
-            var results4traffic2 = response.primary_means_percentage_map.Bus;
-            results4traffic2 = results4traffic2;
-            if (results4traffic2 == null) {
-                results4traffic2 = "0";
-            } else {
-                results4traffic2 = (results4traffic2).toFixed(0);
-            };
-
-
-            var results5traffic2 = response.primary_means_percentage_map.Motorbike;
-            results5traffic2 = results5traffic2;
-            if (results5traffic2 == null) {
-                results5traffic2 = "0";
-            } else {
-                results5traffic2 = (results5traffic2).toFixed(0);
-            };
-
-
-            var results6traffic2 = response.primary_means_percentage_map.Working_from_Home;
-            results6traffic2 = results6traffic2;
-            if (results6traffic2 == null) {
-                results6traffic2 = "0";
-            } else {
-                results6traffic2 = (results6traffic2).toFixed(0);
-            };
-
-            var results7traffic2 = response.primary_means_percentage_map.Train;
-            results7traffic2 = results7traffic2;
-            if (results7traffic2 == null) {
-                results7traffic2 = "0";
-            } else {
-                results7traffic2 = (results7traffic2).toFixed(0);
-            };
-
-            var results8traffic2 = parseInt(results1traffic2) + parseInt(results2traffic2) + parseInt(results3traffic2) + parseInt(results4traffic2) + parseInt(results5traffic2) + parseInt(results6traffic2) + parseInt(results7traffic2);
-            results8traffic2 = 100 - results8traffic2;
-            results8traffic2 = results8traffic2.toFixed(0);
-
-
-            $('#city-div2').html('');
-            $('#city-div2').append("Main Means of Transportation");
-            $('#city-div2').append("<br>");
-            $('#city-div2').append("<br>");
-            $('#city-div2').append("<table>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Car</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results1traffic2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Bike</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results2traffic2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Walking</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results3traffic2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Bus</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results4traffic2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Motorbike</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results5traffic2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Working from Home</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results6traffic2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Train</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results7traffic2 + " max='100'></progress></td>");
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td>Other</td>");
-            $('#city-div2').append("<td><progress id='myProgress' value=" + results8traffic2 + " max='100'></progress></td>");
-
-            $('#city-div2').append("</tr>");
-
-            $('#city-div2').append("</table>");
-
-        });
-    });
 
     
+
+
+
+
+
+   
 
 
     $("#general").on("click", function(event) {
@@ -1795,6 +1137,9 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 };
 
 
-$('#clearbutton').click(function() {
-  window.location.reload();
+$('#clearButton').click(function() {
+    console.log("reloading!");
+ location.reload();
+});
+
 });

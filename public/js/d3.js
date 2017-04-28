@@ -20,6 +20,10 @@ $(document).ready(function() {
     function getCityNumbers(city, city2) {
         function objCreate(keyName, value) {
             if(value == undefined){
+                
+            $("svg").remove();
+                         $('#city-div').html('');
+                                      $('#city-div2').html('');
                 alert("Due to the limits of the Numbeo API, one of these cities that you've chosen has no data associated with it. Please reselect.")
             }
         var newValue = value.toFixed(1);
@@ -251,16 +255,21 @@ $(document).ready(function() {
 
 $("#rent").on('click', function(){
 
+    var city = $("#city-input").val().trim();
+    var city2 = $("#city-input2").val().trim();
+         if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
+
+
     $("svg").remove();
     $("city-div").empty();
     $("city-div2").empty();  
 
     console.log("oH YEEEH!");
 
-     if(city == "" && city2 == ""){
-        alert("Please enter two cities to compare")
-        return;
-    };
+
 
     var city = $("#city-input").val().trim();
         console.log(city);
@@ -335,6 +344,13 @@ $("#rent").on('click', function(){
     });
 
  $("#air").on("click", function(event) {
+
+    var city = $("#city-input").val().trim();
+    var city2 = $("#city-input2").val().trim();
+    if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
 
         console.log("Pollution Button Clicked");
 
@@ -454,6 +470,13 @@ $("#rent").on('click', function(){
 
 $("#crime").on("click", function(event) {
 
+    var city = $("#city-input").val().trim();
+    var city2 = $("#city-input2").val().trim();
+               if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
+
 
         var city = $("#city-input").val().trim();
 
@@ -561,6 +584,13 @@ $("#crime").on("click", function(event) {
 
 
 $("#weather").on("click", function(event) {
+
+    var city = $("#city-input").val().trim();
+    var city2 = $("#city-input2").val().trim();
+               if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
 
 
         var city = $("#city-input").val().trim();
@@ -757,6 +787,13 @@ $("#weather").on("click", function(event) {
 
 
  $("#traffic").on("click", function(event) {
+
+    var city = $("#city-input").val().trim();
+    var city2 = $("#city-input2").val().trim();
+               if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
 
 
         var city = $("#city-input").val().trim();
