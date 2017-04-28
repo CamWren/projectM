@@ -1,3 +1,5 @@
+$( document ).ready(function() {
+
 // =======================================================================================================
 // GLOBAL VARIABLES
 var citySelection = [];
@@ -286,9 +288,16 @@ var userIp = [];
   });
 
 $("#submitButton").on("click", function(event) {
+
+    var city = $("#city-input").val().trim().toLowerCase();
+
+      var city2 = $("#city-input2").val().trim().toLowerCase();
    event.preventDefault();
+
+
    console.log("SUCCESS!!!!!!!!");
      $('#city-div').html('');
+      
             $('#city-div').append(function(event){
 
                     var city = $("#city-input").val().trim().toLowerCase();
@@ -302,14 +311,189 @@ $("#submitButton").on("click", function(event) {
                     citySelection2.push(sitee2);
                     console.log(citySelection2);
 
-    $("#general").on('click', function(){
 
-    var city = $("#city-input").val().trim();
-    var city2 = $("#city-input2").val().trim();
-    console.log(city);
-    console.log(city2);
-    getCityNumbers(city,city2);
+        var city2 = $("#city-input2").val().trim().toLowerCase();
+        // Different variable pushes to global variable citySelection2 without formatting to be used for salary calculation
+        var sitee2 = $("#city-input2").val().trim();
+        citySelection2.push(sitee2);
+        console.log(citySelection2);
+            if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
 
+
+        var queryURL = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city;
+
+
+        $.ajax({
+        url: queryURL,
+        method: "GET"
+        })
+        .done(function(response) {
+            var queryURL2 = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city2;
+
+                $.ajax({
+                url: queryURL2,
+                method: "GET"
+                })
+                .done(function(response2) {
+
+                    if( response2.crime_index == undefined || response.crime_index == undefined){
+                        alert("Due to the limits of the Numbeo API, one of these cities that you've chosen has no data associated with it. Please reselect.");
+                        return;
+
+                    } else { 
+
+                                   $("#tab-1").prop("checked", true)
+
+                                     $('#city-div').html("Use the buttons above to compare.");
+                              $('#city-div2').html('');
+     
+
+
+
+                    };
+
+                });
+
+
+
+
+                });
+
+
+
+
+        });
+        });
+
+    // $("#rent").on("click", function(event) {
+
+
+    //     var city = $("#city-input").val().trim();
+
+
+
+    //     var queryURL = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city;
+
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //     })
+
+    //     .done(function(response) {
+
+    //         var results1rent1 = JSON.stringify(response.prices[21].average_price);
+
+    //         var results2rent1 = response.prices[19].average_price;
+
+    //         results2rent1 = (3.78541 * results2rent1).toFixed(2);
+
+    //         var results3rent1 = response.prices[22].average_price;
+
+    //         results3rent1 = (results3rent1).toFixed(2);
+
+    //         var results4rent1 = response.prices[7].average_price;
+
+    //         results4rent1 = (3.78541 * results4rent1).toFixed(2);
+
+
+
+    //         $('#city-div').html('');
+
+    //         $('#city-div').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent1);
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent1);
+
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Gas Price per Gallon = $" + results2rent1);
+
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Milk Price per Gallon = $" + results4rent1);
+
+
+    //     });
+
+    //     var city2 = $("#city-input2").val().trim();
+
+
+
+    //     var queryURL2 = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city2;
+
+    //     $.ajax({
+    //         url: queryURL2,
+    //         method: "GET"
+    //     })
+
+    //     .done(function(response) {
+
+    //         var results1rent2 = response.prices[21].average_price;
+
+    //         results1rent2 = (results1rent2).toFixed(2);
+
+    //         var results2rent2 = response.prices[19].average_price;
+
+    //         results2rent2 = (3.78541 * results2rent2).toFixed(2);
+
+    //         var results3rent2 = response.prices[22].average_price;
+
+    //         results3rent2 = (results3rent2).toFixed(2);
+
+    //         var results4rent2 = response.prices[7].average_price;
+
+    //         results4rent2 = (3.78541 * results4rent2).toFixed(2);
+
+
+
+    //         $('#city-div2').html('');
+
+    //         $('#city-div2').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent2);
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent2);
+
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Gas Price per Gallon = $" + results2rent2);
+
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Milk Price per Gallon = $" + results4rent2);
+
+
+    //     });
+
+
+
+
+
+
+
+
+
+    // });
+
+   
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+   
+
+
+    $("#general").on("click", function(event) {
+
+
+        var city = $("#city-input").val().trim();
 
 
     function getCityNumbers(city, city2) {
@@ -1267,10 +1451,11 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 // =======================================================================================================
 
 
-$('#clearbutton').click(function() {
-  window.location.reload();
+
+$('#clearButton').click(function() {
+    console.log("reloading!");
+ location.reload();
 });
 
 });
-};
-};
+
