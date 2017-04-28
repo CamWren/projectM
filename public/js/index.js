@@ -4,9 +4,254 @@ $( document ).ready(function() {
 // GLOBAL VARIABLES
 var citySelection = [];
 var citySelection2 = [];
+
+var city_Scores =[];
+var cities = [];
 // =======================================================================================================
 
 window.onload = function() { 
+
+			var map = new L.Map('map');
+            L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            var latitude = 29;
+            var longitude = -98;
+            var city = new L.LatLng(latitude, longitude);
+            map.setView(city,09);
+            var drawnItems = new L.FeatureGroup();
+            map.addLayer(drawnItems);
+            var drawControl = new L.Control.Draw({
+                draw: {
+                circle: false,
+                marker: false,
+                polyline: false
+                },
+                edit: {
+                    featureGroup: drawnItems
+                }
+            });
+            map.addControl(drawControl);
+            var markers = [];
+            var polygon = null;
+            map.on('draw:created', function (e) {
+                // remove markers and polygon from the last run
+                $.each (markers, function (i) { map.removeLayer(markers[i]) });
+                if (polygon != null) map.removeLayer (polygon);
+                var latLngs = $.map(e.layer.getLatLngs(), function(o) {
+                    return { name: "points", value: o.lat + "," + o.lng };
+                });
+                $.ajax({
+                    url: 'https://api.simplyrets.com/properties',
+                    data: latLngs,
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("Authorization", "Basic " + btoa("simplyrets:simplyrets"))
+                    },
+                    success: function(data) {
+                        $.each (data, function (idx) {
+                            var markerLocation = new L.LatLng(data[idx].geo.lat, data[idx].geo.lng);
+                            var marker = new L.Marker(markerLocation);
+                            map.addLayer(marker);
+                            markers.push(marker);
+                        });
+                    }
+                });
+                polygon = e.layer;
+                map.addLayer(e.layer);
+            });
+
+
+            getCities();
+
+//start of code to log selection.
+var values = ["100","100","100","100","100","100","100","100","100","100"];
+
+//updates question 1 with dropdown selection
+var select = document.getElementById('question1');
+select.addEventListener('change', function() {
+
+  for (var i = 0; i < select.selectedOptions.length; i++) {
+    var option = select.selectedOptions[i];
+    values.splice(0, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 2 with dropdown selection
+var select2 = document.getElementById('question2');
+select2.addEventListener('change', function() {
+
+  for (var i = 0; i < select2.selectedOptions.length; i++) {
+    var option = select2.selectedOptions[i];
+    values.splice(1, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 3 with dropdown selection
+var select3 = document.getElementById('question3');
+select3.addEventListener('change', function() {
+
+  for (var i = 0; i < select3.selectedOptions.length; i++) {
+    var option = select3.selectedOptions[i];
+    values.splice(2, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 4 with dropdown selection
+var select4 = document.getElementById('question4');
+select4.addEventListener('change', function() {
+
+  for (var i = 0; i < select4.selectedOptions.length; i++) {
+    var option = select4.selectedOptions[i];
+    values.splice(3, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 5 with dropdown selection
+var select5 = document.getElementById('question5');
+select5.addEventListener('change', function() {
+
+  for (var i = 0; i < select5.selectedOptions.length; i++) {
+    var option = select5.selectedOptions[i];
+    values.splice(4, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 6 with dropdown selection
+var select6 = document.getElementById('question6');
+select6.addEventListener('change', function() {
+
+  for (var i = 0; i < select6.selectedOptions.length; i++) {
+    var option = select6.selectedOptions[i];
+    values.splice(5, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 7 with dropdown selection
+var select7 = document.getElementById('question7');
+select7.addEventListener('change', function() {
+
+  for (var i = 0; i < select7.selectedOptions.length; i++) {
+    var option = select7.selectedOptions[i];
+    values.splice(6, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 8 with dropdown selection
+var select8 = document.getElementById('question8');
+select8.addEventListener('change', function() {
+
+  for (var i = 0; i < select8.selectedOptions.length; i++) {
+    var option = select8.selectedOptions[i];
+    values.splice(7, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 9 with dropdown selection
+var select9 = document.getElementById('question9');
+select9.addEventListener('change', function() {
+
+  for (var i = 0; i < select9.selectedOptions.length; i++) {
+    var option = select9.selectedOptions[i];
+    values.splice(8, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//updates question 10 with dropdown selection
+var select10 = document.getElementById('question10');
+select10.addEventListener('change', function() {
+
+  for (var i = 0; i < select10.selectedOptions.length; i++) {
+    var option = select10.selectedOptions[i];
+    values.splice(9, 1, option.value);
+  };
+  myBestMatch();
+});
+
+//function that gets the data from our public api
+
+function getCities(){
+  $.get("/api", function(data){
+    
+    for(var i=0; i <data.length; i++){
+    
+    cities = {
+      city: data[i].City_Name,
+      state: data[i].State_Name,
+      scores: [data[i].Public_Transportation,
+               data[i].Weather,
+               data[i].Sports,
+               data[i].Live_Music,
+               data[i].Outdoor_Parks,
+               data[i].Schools_Education,
+               data[i].Fitness_Health,
+               data[i].Safety,
+               data[i].Nightlife_Bars,
+               data[i].Population_Density],
+      latitude: data[i].Latitude,
+      longitude: data[i].Longitude
+
+            }
+    city_Scores.push(cities);        
+            console.log(cities);
+  }
+
+  });
+}
+
+//function which finds the best city based on the survey results the user has entered.
+function myBestMatch() {
+  
+// console.log()
+  var bestMatch = {
+    city: "",
+    state: "",
+    cityDifference: 1000,
+    latitude: "",
+    longitude:""
+  };
+
+  var totalDifference = 0;
+
+  // Here we loop through all the city possibilities in the database.
+  for (var i = 0; i < city_Scores.length; i++) {
+
+    // console.log(cityScores[i]);
+    totalDifference = 0;
+
+    // We calculate the difference between the scores and sum them into the totalDifference. If they have not selected a value yet the score defaults to 100 to take that item out of consideration.
+    for (var j = 0; j < values.length; j++) {
+      if (values[j] > 10) {
+        totalDifference = totalDifference + 100 }
+        else {
+        totalDifference = totalDifference + Math.abs(parseInt(values[j]) - parseInt(city_Scores[i].scores[j]));
+      }
+    }
+   
+
+    // If the sum of differences is less then the differences of the current "best match"
+    if (totalDifference <= bestMatch.cityDifference) {
+
+      // Reset the bestMatch to be the new city.
+      bestMatch.city = city_Scores[i].city;
+      bestMatch.state = city_Scores[i].state;
+      bestMatch.cityDifference = totalDifference;
+      bestMatch.latitude = city_Scores[i].latitude;
+      bestMatch.longitude = city_Scores[i].longitude;
+      console.log(bestMatch.city);
+      $("#suggestedCity").html("<h4>Best Match: " + bestMatch.city + ", " + bestMatch.state + "</h4>");
+    }
+  }
+
+  console.log(bestMatch);
 
 // =======================================================================================================
 // USER AUTHENTICATION BEGINNING
@@ -60,6 +305,12 @@ $("#submitButton").on("click", function(event) {
                     var sitee = $("#city-input").val().trim();
                     citySelection.push(sitee);
                     console.log(citySelection);
+                    var city2 = $("#city-input2").val().trim().toLowerCase();
+                    // Different variable pushes to global variable citySelection without formatting to be used for salary calculation
+                    var sitee2 = $("#city-input2").val().trim();
+                    citySelection2.push(sitee2);
+                    console.log(citySelection2);
+
 
         var city2 = $("#city-input2").val().trim().toLowerCase();
         // Different variable pushes to global variable citySelection2 without formatting to be used for salary calculation
@@ -245,141 +496,227 @@ $("#submitButton").on("click", function(event) {
         var city = $("#city-input").val().trim();
 
 
+    function getCityNumbers(city, city2) {
+        function objCreate(keyName, value) {
+        var newValue = value.toFixed(1);
+        newValue = parseInt(newValue);
+        var objectName = {
+            key: keyName,
+            value: newValue
+        };
+        data.push(objectName);
+    };
+
 
         var queryURL = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city;
+        var data = [];
 
         $.ajax({
-            url: queryURL,
-            method: "GET"
+        url: queryURL,
+        method: "GET"
         })
-
         .done(function(response) {
+            console.log("hello!");
+            console.log(response)
+            var cityName = response.name;
+            var crime = response.crime_index;
+            var groceries = response.groceries_index;
+            var health = response.health_care_index;
+            var pollution = response.pollution_index;
+            var qualityLife = response.quality_of_life_index;
+            var rent = response.rent_index;
+            var safety = response.safety_index;
 
-            var results1general1 = response.health_care_index;
-            var results1general1 = (results1general1).toFixed(0);
+            console.log(crime + "\n" + cityName + "\n" + groceries + "\n" + health + "\n" +
+            pollution + "\n" + qualityLife + "\n" + rent + "\n" + safety + "\n");
 
-            var results2general1 = response.crime_index;
-            var results2general1 = (results2general1).toFixed(0);
+         
 
-            var results3general1 = response.traffic_time_index;
-            var results3general1 = (results3general1).toFixed(0);
+                        var queryURL2 = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city2;
+             
 
-            var results4general1 = response.quality_of_life_index;
-            var results4general1 = (results4general1).toFixed(0);
+                        $.ajax({
+                        url: queryURL2,
+                        method: "GET"
+                        })
+                        .done(function(response) {
+                            console.log("hello!2");
+                            console.log(response)
+                            var cityName2 = response.name;
+                            var crime2 = response.crime_index;
+                            var groceries2 = response.groceries_index;
+                            var health2 = response.health_care_index;
+                            var pollution2 = response.pollution_index;
+                            var qualityLife2 = response.quality_of_life_index;
+                            var rent2 = response.rent_index;
+                            var safety2 = response.safety_index;
 
+                        console.log(crime2 + "\n" + cityName2 + "\n" + groceries2 + "\n" + health2 + "\n" +
+            pollution2 + "\n" + qualityLife2 + "\n" + rent2 + "\n" + safety2 + "\n");
 
-            var results5general1 = response.safety_index;
-            var results5general1 = (results5general1).toFixed(0);
+            params = [
+                [city + " Crime Index", crime],
+                [city2 + " Crime Index", crime2],
 
+                [city + " Groceries Index", groceries],
+                [city2 + " Groceries Index", groceries2],
 
-            var results6general1 = response.rent_index;
-            var results6general1 = (results6general1).toFixed(0);
+                [city + " Health Index", health],
+                [city2 + " Health Index", health2],
 
+                [city + " Pollution Index", pollution],
+                [city2 + " Pollution Index", pollution2],
 
-            var results7general1 = response.pollution_index;
-            var results7general1 = (results7general1).toFixed(0);
+                [city + " Quality of Life Index", qualityLife],
+                [city2 + " Quality of Life Index", qualityLife2],
 
-            var results8general1 = response.groceries_index;
-            var results8general1 = (results8general1).toFixed(0);
+                [city + " Rent Index", rent],
+                [city2 + " Rent Index", rent2],
 
-            $('#city-div').html('');
-
-            $('#city-div').prepend("Healthcare Index: " + results1general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Health Care Index is an estimation of the overall quality of the health care system, health care professionals, equipment, staff, doctors, cost, etc.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Crime Index: " + results2general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Crime Index is an estimation of overall level of crime in a given city or a country. We consider crime levels lower than 20 as very low, crime levels between 20 and 40 as being low, crime levels between 40 and 60 as being moderate, crime levels between 60 and 80 as being high and finally crime levels higher than 80 as being very high.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Traffic Index: " + results3general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Traffic Index is a composite index of time consumed in traffic due to job commute, estimation of time consumption dissatisfaction, CO2 consumption estimation in traffic and overall inefficiencies in the traffic system.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Quality of Life Index: " + results4general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Quality of Life Index (higher is better) is an estimation of overall quality of life by using empirical formula which takes into account purchasing power index (higher is better), pollution index (lower is better), house price to income ratio (lower is better), cost of living index (lower is better), safety index (higher is better), health care index (higher is better), traffic commute time index (lower is better) and climate index (higher is better).</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Safety Index: " + results5general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Safety index is, on the other way, quite opposite of crime index. If the city has a high safety index, it is considered very safe.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Rent Index: " + results6general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Rent Index is estimation of prices of renting apartments in the city compared to New York City. If Rent index is 80, Numbeo estimates that price for renting in that city is 80% of price in New York.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Pollution Index: " + results7general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Pollution Index is an estimation of the overall pollution in the city. The biggest weight is given to air pollution, than to water pollution/accessibility, two main pollution factors. Small weight is given to other pollution types.</div>");
-            $('#city-div').prepend("<br>");
-            $('#city-div').prepend("Groceries Index: " + results8general1);
-            $('#city-div').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Groceries Index is an estimation of grocery prices in the city compared to New York City.</div>");
-        });
-
-        var city2 = $("#city-input2").val().trim();
-
-
-
-        var queryURL2 = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city2;
-
-        $.ajax({
-            url: queryURL2,
-            method: "GET"
-        })
-
-        .done(function(response) {
-
-            var results1general2 = response.health_care_index;
-            var results1general2 = (results1general2).toFixed(0);
-
-            var results2general2 = response.crime_index;
-            var results2general2 = (results2general2).toFixed(0);
-
-            var results3general2 = response.traffic_time_index;
-            var results3general2 = (results3general2).toFixed(0);
-
-            var results4general2 = response.quality_of_life_index;
-            var results4general2 = (results4general2).toFixed(0);
+                [city + " Safety Index", safety],
+                [city2 + " Safety Index", safety2]
+            ];
 
 
-            var results5general2 = response.safety_index;
-            var results5general2 = (results5general2).toFixed(0);
-
-
-            var results6general2 = response.rent_index;
-            var results6general2 = (results6general2).toFixed(0);
-
-
-            var results7general2 = response.pollution_index;
-            var results7general2 = (results7general2).toFixed(0);
-
-            var results8general2 = response.groceries_index;
-            var results8general2 = (results8general2).toFixed(0);
-
-            $('#city-div2').html('');
-
-            $('#city-div2').prepend("Healthcare Index: " + results1general2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Health Care Index is an estimation of the overall quality of the health care system, health care professionals, equipment, staff, doctors, cost, etc.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Crime Index: " + results2general2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Crime Index is an estimation of overall level of crime in a given city or a country. We consider crime levels lower than 20 as very low, crime levels between 20 and 40 as being low, crime levels between 40 and 60 as being moderate, crime levels between 60 and 80 as being high and finally crime levels higher than 80 as being very high.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Traffic Index: " + results3general2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Traffic Index is a composite index of time consumed in traffic due to job commute, estimation of time consumption dissatisfaction, CO2 consumption estimation in traffic and overall inefficiencies in the traffic system.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Quality of Life Index: " + results4general2);
-                      $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Quality of Life Index (higher is better) is an estimation of overall quality of life by using empirical formula which takes into account purchasing power index (higher is better), pollution index (lower is better), house price to income ratio (lower is better), cost of living index (lower is better), safety index (higher is better), health care index (higher is better), traffic commute time index (lower is better) and climate index (higher is better).</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Safety Index: " + results5general2);
-            $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Safety index is, on the other way, quite opposite of crime index. If the city has a high safety index, it is considered very safe.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Rent Index: " + results6general2);
-                       $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Rent Index is estimation of prices of renting apartments in the city compared to New York City. If Rent index is 80, Numbeo estimates that price for renting in that city is 80% of price in New York.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Pollution Index: " + results7general2);
-                        $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Pollution Index is an estimation of the overall pollution in the city. The biggest weight is given to air pollution, than to water pollution/accessibility, two main pollution factors. Small weight is given to other pollution types.</div>");
-            $('#city-div2').prepend("<br>");
-            $('#city-div2').prepend("Groceries Index: " + results8general2);
-                        $('#city-div2').prepend(" <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Groceries Index is an estimation of grocery prices in the city compared to New York City.</div>");
-        });
+            for (var i = 0; i < params.length; i++) {
+            objCreate(params[i][0], params[i][1]);
+            };
 
 
 
 
-    });
+            $("svg").remove();
+
+
+                                var w = 800;
+                                var h = 500;
+                                var margin = {
+                                    top: 58,
+                                    bottom: 180,
+                                    left: 80,
+                                    right: 40
+                                };
+                                var width = w - margin.left - margin.right;
+                                var height = h - margin.top - margin.bottom;
+
+                                var x = d3.scale.ordinal()
+                                    .domain(data.map(function(entry) {
+                                        return entry.key;
+                                    }))
+                                    .rangeBands([0, width]);
+                                var y = d3.scale.linear()
+                                    .domain([0, d3.max(data, function(d) {
+                                        return d.value;
+                                    })])
+                                    .range([height, 0]);
+                                var ordinalColorScale = d3.scale.category20();
+                                var xAxis = d3.svg.axis()
+                                    .scale(x)
+                                    .orient("bottom");
+                                var yAxis = d3.svg.axis()
+                                    .scale(y)
+                                    .orient("left");
+                                var yGridlines = d3.svg.axis()
+                                    .scale(y)
+                                    .tickSize(-width, 0, 0)
+                                    .tickFormat("")
+                                    .orient("left");
+                                var svg = d3.select("#city-div").append("svg")
+                                    .attr("id", "chart")
+                                    .attr("width", w)
+                                    .attr("height", h);
+                                var chart = svg.append("g")
+                                    .classed("display", true)
+                                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                                function plot(params) {
+                                    this.append("g")
+                                        .call(params.gridlines)
+                                        .classed("gridline", true)
+                                        .attr("transform", "translate(0,0)")
+                                    this.selectAll(".bar")
+                                        .data(params.data)
+                                        .enter()
+                                        .append("rect")
+                                        .classed("bar", true)
+                                        .attr("x", function(d, i) {
+                                            return x(d.key);
+                                        })
+                                        .attr("y", function(d, i) {
+                                            return y(d.value);
+                                        })
+                                        .attr("height", function(d, i) {
+                                            return height - y(d.value);
+                                        })
+                                        .attr("width", function(d) {
+                                            return x.rangeBand();
+                                        })
+                                        .style("fill", function(d, i) {
+                                            return ordinalColorScale(i);
+                                        });
+                                    this.selectAll(".bar-label")
+                                        .data(params.data)
+                                        .enter()
+                                        .append("text")
+                                        .classed("bar-label", true)
+                                        .attr("x", function(d, i) {
+                                            return x(d.key) + (x.rangeBand() / 2)
+                                        })
+                                        .attr("dx", 0)
+                                        .attr("y", function(d, i) {
+                                            return y(d.value);
+                                        })
+                                        .attr("dy", -6)
+                                        .text(function(d) {
+                                            return d.value;
+                                        })
+                                    this.append("g")
+                                        .classed("x axis", true)
+                                        .attr("transform", "translate(" + 0 + "," + height + ")")
+                                        .call(params.axis.x)
+                                        .selectAll("text")
+                                        .style("text-anchor", "end")
+                                        .attr("dx", -8)
+                                        .attr("dy", 8)
+                                        .attr("transform", "translate(0,0) rotate(-45)");
+
+                                    this.append("g")
+                                        .classed("y axis", true)
+                                        .attr("transform", "translate(0,0)")
+                                        .call(params.axis.y);
+
+                                    this.select(".y.axis")
+                                        .append("text")
+                                        .attr("x", 0)
+                                        .attr("y", 0)
+                                        .style("text-anchor", "middle")
+                                        .attr("transform", "translate(-50," + height / 2 + ") rotate(-90)")
+                                        .text("Index Rating");
+
+                                    this.select(".x.axis")
+                                        .append("text")
+                                        .attr("x", 150)
+                                        .attr("y", 0)
+                                        .style("text-anchor", "middle")
+                                        .attr("transform", "translate(" + width / 2 + ",80)")
+                                        .text("");
+                                }
+                                plot.call(chart, {
+                                    data: data,
+                                    axis: {
+                                        x: xAxis,
+                                        y: yAxis
+                                    },
+                                    gridlines: yGridlines
+                                });
+
+            })
+            })
+        };
+
+
+});
+});    
 
 
 
@@ -984,51 +1321,30 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
     var rppsScore2 = [];
 
     $("#salaries").on("click", function(event) {
-        // Initialize a new plugin instance for element or array of elements.
-        var slider = document.querySelectorAll('input[type="range"]');
-        rangeSlider.create(slider, {
-            polyfill: true,     // Boolean, if true, custom markup will be created
-            rangeClass: 'rangeSlider',
-            disabledClass: 'rangeSlider--disabled',
-            fillClass: 'rangeSlider__fill',
-            bufferClass: 'rangeSlider__buffer',
-            handleClass: 'rangeSlider__handle',
-            startEvent: ['mousedown', 'touchstart', 'pointerdown'],
-            moveEvent: ['mousemove', 'touchmove', 'pointermove'],
-            endEvent: ['mouseup', 'touchend', 'pointerup'],
-            min: null,          // Number , 0
-            max: null,          // Number, 100
-            step: null,         // Number, 1
-            value: null,        // Number, center of slider
-            buffer: null,       // Number, in percent, 0 by default
-            stick: null,        // [Number stickTo, Number stickRadius] : use it if handle should stick to stickTo-th value in stickRadius
-            borderRadius: 10,    // Number, if you use buffer + border-radius in css for looks good,
-            onInit: function () {
-                console.info('onInit')
-            },
-            onSlideStart: function (position, value) {
-                console.info('onSlideStart', 'position: ' + position, 'value: ' + value);
-            },
-            onSlide: function (position, value) {
-                console.log('onSlide', 'position: ' + position, 'value: ' + value);
-            },
-            onSlideEnd: function (position, value) {
-                console.warn('onSlideEnd', 'position: ' + position, 'value: ' + value);
-            }
-        });
-
-        // then...
-        var giveMeSomeEvents = true; // or false
-        slider.rangeSlider.update({min : 0, max : 20, step : 0.5, value : 1.5, buffer : 70}, giveMeSomeEvents);
-        // or
-        slider.rangeSlider.onSlideStart = function (position, value) {
-            console.error('anotherCallback', 'position: ' + position, 'value: ' + value);
-        };
-
         $('#city-div').html('');
         $('#city-div2').html('');
         $('#city-div').append("<h3 id='salcomparison'>Compare Salaries Between Cities</h3><br />");
-        $('#city-div').append("<input type='range' min='0' max='10' step='1' data-buffer='60'/>");
+        $('#city-div').append("<div class='range-slider' style='opacity: 1;'><input class='range-slider__range' type='range' value='100' min='0' max='500' style='opacity: 1;'><span class='range-slider__value' style='opacity: 1;'>0</span></div>");
+        
+        var rangeSlider = function(){
+        var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+
+        slider.each(function(){
+
+          value.each(function(){
+            var value = $(this).prev().attr('value');
+            $(this).html(value);
+          });
+
+          range.on('input', function(){
+            $(this).next(value).html(this.value);
+          });
+        });
+      };
+      rangeSlider();
+
         console.log(citySelection[0]);
         console.log(citySelection2[0]);
 
@@ -1046,12 +1362,11 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
         console.log(rppsScore2[0]);
         
     });
-
-
-
 // =======================================================================================================
 // SALARY COMPARISON END
 // =======================================================================================================
+
+
 
 
 // =======================================================================================================
@@ -1134,7 +1449,7 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 // =======================================================================================================
 //INDEED API AJAX CALL END
 // =======================================================================================================
-};
+
 
 
 $('#clearButton').click(function() {
@@ -1143,3 +1458,4 @@ $('#clearButton').click(function() {
 });
 
 });
+

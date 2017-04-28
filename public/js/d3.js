@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
     console.log( "ready!" );
     $("#general").on('click', function(){
 
@@ -252,6 +252,7 @@ $(document).ready(function() {
 
 
 });
+
 
 $("#rent").on('click', function(){
 
@@ -1066,5 +1067,6 @@ $("#weather").on("click", function(event) {
 
 
 });
+
 
 
