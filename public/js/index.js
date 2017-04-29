@@ -6,7 +6,8 @@ var citySelection = [];
 var citySelection2 = [];
 // =======================================================================================================
 
-window.onload = function() { 
+window.onload = function mapLoad() { 
+    console.log("loading map");
 
 			var map = new L.Map('map');
             L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -521,7 +522,7 @@ $("#submitButton").on("click", function(event) {
 
 
 });
-});    
+   
 
 
 
@@ -1261,6 +1262,8 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 
 $('#clearButton').click(function() {
     console.log("reloading!");
- location.reload();
+    location.reload();
+    mapLoad();
 });
 
+});
