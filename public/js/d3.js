@@ -1,3 +1,6 @@
+$( document ).ready(function() {
+    console.log( "ready!" );
+   
 
     console.log( "ready!" );
     $("#general").on('click', function(){
@@ -1066,7 +1069,6 @@ $("#weather").on("click", function(event) {
 
 
 
+
+
 });
-
-
-
