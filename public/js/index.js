@@ -199,7 +199,7 @@ function getCities(){
 
             }
     city_Scores.push(cities);        
-            console.log(cities);
+            // console.log(cities);
   }
 
   });
@@ -250,6 +250,8 @@ function myBestMatch() {
   }
 
   console.log(bestMatch);
+
+};
 
 // =======================================================================================================
 // USER AUTHENTICATION BEGINNING
@@ -356,8 +358,8 @@ $("#submitButton").on("click", function(event) {
                         method: "GET"
                         })
                         .done(function(response) {
-                            console.log("hello!2");
-                            console.log(response)
+                            console.log("hello!2"); v
+                            console.log(response);
                             var cityName2 = response.name;
                             var crime2 = response.crime_index;
                             var groceries2 = response.groceries_index;
@@ -1136,26 +1138,54 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
     var rppsScore = [];
     var rppsScore2 = [];
 
+    var sliderValue;
+
+    var citySalary = [];
+    var citySalary2 = [];
+
     $("#salaries").on("click", function(event) {
         $('#city-div').html('');
         $('#city-div2').html('');
         $('#city-div').append("<h3 id='salcomparison'>Compare Salaries Between Cities</h3><br />");
-        $('#city-div').append("<div class='range-slider' style='opacity: 1;'><input class='range-slider__range' type='range' value='100' min='0' max='500' style='opacity: 1;'><span class='range-slider__value' style='opacity: 1;'>0</span></div>");
-        
-        var rangeSlider = function(){
+        $('#city-div').append("<div class='range-slider' style='opacity: 1;'><input class='range-slider__range' type='range' value='0' min='0' max='500' style='opacity: 1; width: 805px;'>$<span class='range-slider__value' style='opacity: 1;'></span><span>K</span></div>");
+        $('#city-div').append("<div id='cityName' style='opacity: 1; padding: 10px 10px 10px 10px; margin-bottom: 0px; margin-right: 95px; margin-left: 0px; display: inline-block;'><h4>" + citySelection + ": </h4><h4 id='citySalary' style='opacity: 1;'></h4></div>");
+        $('#city-div').append("<div id='city2Name' style='opacity: 1; padding: 10px 10px 10px 10px; margin-bottom: 0px; margin-left: 125px; display: inline-block;'><h4>" + citySelection2 + ": </h4><h4 id='citySalary2' style='opacity: 1;'></h4></div>");
+
+
+        var rangeSlider = function() {
         var slider = $('.range-slider'),
             range = $('.range-slider__range'),
             value = $('.range-slider__value');
 
-        slider.each(function(){
+        slider.each(function() {
 
-          value.each(function(){
+          value.each(function() {
             var value = $(this).prev().attr('value');
             $(this).html(value);
           });
 
-          range.on('input', function(){
+          range.on('input', function() {
             $(this).next(value).html(this.value);
+            sliderValue = parseInt(this.value);
+            console.log(sliderValue);
+            var index = rppsScore / 100;
+            var index2 = rppsScore2 / 100;
+            console.log(index);
+            console.log(index2);
+            var salaryPreXK = sliderValue / index;
+            var salaryPreXK2 = sliderValue / index2;
+            console.log(salaryPreXK);
+            console.log(salaryPreXK2);
+            var citySelectionSalary = salaryPreXK * 1000;
+            var citySelectionSalary2 = salaryPreXK2 * 1000;
+            console.log(citySelectionSalary);
+            console.log(citySelectionSalary2);
+            $('#citySalary').empty();
+            $('#citySalary2').empty();
+            $('#citySalary').append(citySelectionSalary.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            $('#citySalary2').append(citySelectionSalary2.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+            $('#citySalary').prepend('$');
+            $('#citySalary2').prepend('$');
           });
         });
       };
@@ -1166,10 +1196,8 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 
         for (var i = 0; i < rpps.length; i++) {
             if (citySelection[0] === rpps[i].cityName) {
-                console.log("Success!!!" + " " + rpps[i].cityName + " has an index score of " + rpps[i].indexScore);
                 rppsScore.push(rpps[i].indexScore);
             } if (citySelection2[0] === rpps[i].cityName) {
-                console.log("Success!!!" + " " + rpps[i].cityName + " has an index score of " + rpps[i].indexScore);
                 rppsScore2.push(rpps[i].indexScore);
             }
         };
@@ -1181,8 +1209,6 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 // =======================================================================================================
 // SALARY COMPARISON END
 // =======================================================================================================
-
-
 
 
 // =======================================================================================================
@@ -1266,11 +1292,9 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 //INDEED API AJAX CALL END
 // =======================================================================================================
 
-
 $('#clearbutton').click(function() {
   window.location.reload();
 });
 
 });
-};
 };
