@@ -1,11 +1,6 @@
 $( document ).ready(function() {
     console.log( "ready!" );
-   
-
-    console.log( "ready!" );
-    $("#general").on('click', function(){
-
-
+    $("#general").on('click', function() {
 
     var city = $("#city-input").val().trim();
     var city2 = $("#city-input2").val().trim();
