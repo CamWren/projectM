@@ -1,20 +1,20 @@
+$( document ).ready(function() {
+
 // =======================================================================================================
 // GLOBAL VARIABLES
 var citySelection = [];
 var citySelection2 = [];
-
-var city_Scores =[];
-var cities = [];
 // =======================================================================================================
 
-window.onload = function() { 
+window.onload = function mapLoad() { 
+    console.log("loading map");
 
 			var map = new L.Map('map');
             L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
             }).addTo(map);
-            var latitude = 29;
-            var longitude = -98;
+            var latitude = 29.97;
+            var longitude = -95.35;
             var city = new L.LatLng(latitude, longitude);
             map.setView(city,09);
             var drawnItems = new L.FeatureGroup();
@@ -59,200 +59,7 @@ window.onload = function() {
             });
 
 
-            getCities();
-
-//start of code to log selection.
-var values = ["100","100","100","100","100","100","100","100","100","100"];
-
-//updates question 1 with dropdown selection
-var select = document.getElementById('question1');
-select.addEventListener('change', function() {
-
-  for (var i = 0; i < select.selectedOptions.length; i++) {
-    var option = select.selectedOptions[i];
-    values.splice(0, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 2 with dropdown selection
-var select2 = document.getElementById('question2');
-select2.addEventListener('change', function() {
-
-  for (var i = 0; i < select2.selectedOptions.length; i++) {
-    var option = select2.selectedOptions[i];
-    values.splice(1, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 3 with dropdown selection
-var select3 = document.getElementById('question3');
-select3.addEventListener('change', function() {
-
-  for (var i = 0; i < select3.selectedOptions.length; i++) {
-    var option = select3.selectedOptions[i];
-    values.splice(2, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 4 with dropdown selection
-var select4 = document.getElementById('question4');
-select4.addEventListener('change', function() {
-
-  for (var i = 0; i < select4.selectedOptions.length; i++) {
-    var option = select4.selectedOptions[i];
-    values.splice(3, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 5 with dropdown selection
-var select5 = document.getElementById('question5');
-select5.addEventListener('change', function() {
-
-  for (var i = 0; i < select5.selectedOptions.length; i++) {
-    var option = select5.selectedOptions[i];
-    values.splice(4, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 6 with dropdown selection
-var select6 = document.getElementById('question6');
-select6.addEventListener('change', function() {
-
-  for (var i = 0; i < select6.selectedOptions.length; i++) {
-    var option = select6.selectedOptions[i];
-    values.splice(5, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 7 with dropdown selection
-var select7 = document.getElementById('question7');
-select7.addEventListener('change', function() {
-
-  for (var i = 0; i < select7.selectedOptions.length; i++) {
-    var option = select7.selectedOptions[i];
-    values.splice(6, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 8 with dropdown selection
-var select8 = document.getElementById('question8');
-select8.addEventListener('change', function() {
-
-  for (var i = 0; i < select8.selectedOptions.length; i++) {
-    var option = select8.selectedOptions[i];
-    values.splice(7, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 9 with dropdown selection
-var select9 = document.getElementById('question9');
-select9.addEventListener('change', function() {
-
-  for (var i = 0; i < select9.selectedOptions.length; i++) {
-    var option = select9.selectedOptions[i];
-    values.splice(8, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//updates question 10 with dropdown selection
-var select10 = document.getElementById('question10');
-select10.addEventListener('change', function() {
-
-  for (var i = 0; i < select10.selectedOptions.length; i++) {
-    var option = select10.selectedOptions[i];
-    values.splice(9, 1, option.value);
-  };
-  myBestMatch();
-});
-
-//function that gets the data from our public api
-
-function getCities(){
-  $.get("/api", function(data){
-    
-    for(var i=0; i <data.length; i++){
-    
-    cities = {
-      city: data[i].City_Name,
-      state: data[i].State_Name,
-      scores: [data[i].Public_Transportation,
-               data[i].Weather,
-               data[i].Sports,
-               data[i].Live_Music,
-               data[i].Outdoor_Parks,
-               data[i].Schools_Education,
-               data[i].Fitness_Health,
-               data[i].Safety,
-               data[i].Nightlife_Bars,
-               data[i].Population_Density],
-      latitude: data[i].Latitude,
-      longitude: data[i].Longitude
-
-            }
-    city_Scores.push(cities);        
-            // console.log(cities);
-  }
-
-  });
-}
-
-//function which finds the best city based on the survey results the user has entered.
-function myBestMatch() {
-  
-// console.log()
-  var bestMatch = {
-    city: "",
-    state: "",
-    cityDifference: 1000,
-    latitude: "",
-    longitude:""
-  };
-
-  var totalDifference = 0;
-
-  // Here we loop through all the city possibilities in the database.
-  for (var i = 0; i < city_Scores.length; i++) {
-
-    // console.log(cityScores[i]);
-    totalDifference = 0;
-
-    // We calculate the difference between the scores and sum them into the totalDifference. If they have not selected a value yet the score defaults to 100 to take that item out of consideration.
-    for (var j = 0; j < values.length; j++) {
-      if (values[j] > 10) {
-        totalDifference = totalDifference + 100 }
-        else {
-        totalDifference = totalDifference + Math.abs(parseInt(values[j]) - parseInt(city_Scores[i].scores[j]));
-      }
-    }
-   
-
-    // If the sum of differences is less then the differences of the current "best match"
-    if (totalDifference <= bestMatch.cityDifference) {
-
-      // Reset the bestMatch to be the new city.
-      bestMatch.city = city_Scores[i].city;
-      bestMatch.state = city_Scores[i].state;
-      bestMatch.cityDifference = totalDifference;
-      bestMatch.latitude = city_Scores[i].latitude;
-      bestMatch.longitude = city_Scores[i].longitude;
-      console.log(bestMatch.city);
-      $("#suggestedCity").html("<h4>Best Match: " + bestMatch.city + ", " + bestMatch.state + "</h4>");
-    }
-  }
-
-  console.log(bestMatch);
-
-};
-
+          };
 // =======================================================================================================
 // USER AUTHENTICATION BEGINNING
 // =======================================================================================================
@@ -288,9 +95,16 @@ var userIp = [];
   });
 
 $("#submitButton").on("click", function(event) {
+
+    var city = $("#city-input").val().trim().toLowerCase();
+
+      var city2 = $("#city-input2").val().trim().toLowerCase();
    event.preventDefault();
+
+
    console.log("SUCCESS!!!!!!!!");
      $('#city-div').html('');
+      
             $('#city-div').append(function(event){
 
                     var city = $("#city-input").val().trim().toLowerCase();
@@ -304,14 +118,189 @@ $("#submitButton").on("click", function(event) {
                     citySelection2.push(sitee2);
                     console.log(citySelection2);
 
-    $("#general").on('click', function(){
 
-    var city = $("#city-input").val().trim();
-    var city2 = $("#city-input2").val().trim();
-    console.log(city);
-    console.log(city2);
-    getCityNumbers(city,city2);
+        var city2 = $("#city-input2").val().trim().toLowerCase();
+        // Different variable pushes to global variable citySelection2 without formatting to be used for salary calculation
+        var sitee2 = $("#city-input2").val().trim();
+        citySelection2.push(sitee2);
+        console.log(citySelection2);
+            if(city == "" && city2 == ""){
+        alert("Please enter two cities to compare")
+        return;
+    };
 
+
+        var queryURL = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city;
+
+
+        $.ajax({
+        url: queryURL,
+        method: "GET"
+        })
+        .done(function(response) {
+            var queryURL2 = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city2;
+
+                $.ajax({
+                url: queryURL2,
+                method: "GET"
+                })
+                .done(function(response2) {
+
+                    if( response2.crime_index == undefined || response.crime_index == undefined){
+                        alert("Due to the limits of the Numbeo API, one of these cities that you've chosen has no data associated with it. Please reselect.");
+                        return;
+
+                    } else { 
+
+                                   $("#tab-1").prop("checked", true)
+
+                                     $('#city-div').html("Use the buttons above to compare.");
+                              $('#city-div2').html('');
+     
+
+
+
+                    };
+
+                });
+
+
+
+
+                });
+
+
+
+
+        });
+        });
+
+    // $("#rent").on("click", function(event) {
+
+
+    //     var city = $("#city-input").val().trim();
+
+
+
+    //     var queryURL = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city;
+
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //     })
+
+    //     .done(function(response) {
+
+    //         var results1rent1 = JSON.stringify(response.prices[21].average_price);
+
+    //         var results2rent1 = response.prices[19].average_price;
+
+    //         results2rent1 = (3.78541 * results2rent1).toFixed(2);
+
+    //         var results3rent1 = response.prices[22].average_price;
+
+    //         results3rent1 = (results3rent1).toFixed(2);
+
+    //         var results4rent1 = response.prices[7].average_price;
+
+    //         results4rent1 = (3.78541 * results4rent1).toFixed(2);
+
+
+
+    //         $('#city-div').html('');
+
+    //         $('#city-div').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent1);
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent1);
+
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Gas Price per Gallon = $" + results2rent1);
+
+    //         $('#city-div').prepend("<br>");
+    //         $('#city-div').prepend("Average Milk Price per Gallon = $" + results4rent1);
+
+
+    //     });
+
+    //     var city2 = $("#city-input2").val().trim();
+
+
+
+    //     var queryURL2 = "https://www.numbeo.com/api/city_prices?api_key=6b2rzozbl9v8lu&query=" + city2;
+
+    //     $.ajax({
+    //         url: queryURL2,
+    //         method: "GET"
+    //     })
+
+    //     .done(function(response) {
+
+    //         var results1rent2 = response.prices[21].average_price;
+
+    //         results1rent2 = (results1rent2).toFixed(2);
+
+    //         var results2rent2 = response.prices[19].average_price;
+
+    //         results2rent2 = (3.78541 * results2rent2).toFixed(2);
+
+    //         var results3rent2 = response.prices[22].average_price;
+
+    //         results3rent2 = (results3rent2).toFixed(2);
+
+    //         var results4rent2 = response.prices[7].average_price;
+
+    //         results4rent2 = (3.78541 * results4rent2).toFixed(2);
+
+
+
+    //         $('#city-div2').html('');
+
+    //         $('#city-div2').prepend("Average Rent 1 Bedroom (Downtown) = $" + results1rent2);
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Rent 1 Bedroom (Outside of Downtown) = $" + results3rent2);
+
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Gas Price per Gallon = $" + results2rent2);
+
+    //         $('#city-div2').prepend("<br>");
+    //         $('#city-div2').prepend("Average Milk Price per Gallon = $" + results4rent2);
+
+
+    //     });
+
+
+
+
+
+
+
+
+
+    // });
+
+   
+
+
+
+
+
+    
+
+
+
+    
+
+
+
+
+
+   
+
+
+    $("#general").on("click", function(event) {
+
+
+        var city = $("#city-input").val().trim();
 
 
     function getCityNumbers(city, city2) {
@@ -534,7 +523,7 @@ $("#submitButton").on("click", function(event) {
 
 
 });
-});    
+   
 
 
 
@@ -1206,6 +1195,9 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
         console.log(rppsScore2[0]);
         
     });
+
+
+
 // =======================================================================================================
 // SALARY COMPARISON END
 // =======================================================================================================
@@ -1292,9 +1284,9 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
 //INDEED API AJAX CALL END
 // =======================================================================================================
 
-$('#clearbutton').click(function() {
-  window.location.reload();
+$('#clearButton').click(function() {
+    console.log("reloading!");
+    location.reload();
+    mapLoad();
 });
 
-});
-};
