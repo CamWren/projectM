@@ -21,9 +21,8 @@ body,html{
 }
 
 #logoMIGRATE{
-margin-bottom: -63px; 
-margin-top: -32px;
-
+	margin-bottom: -40px;
+    margin-top: 0px;
 }
 
 g.display{
