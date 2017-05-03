@@ -244,9 +244,23 @@ $( document ).ready(function() {
                                     gridlines: yGridlines
                                 });
 
+
+
+
+                                       $('#city-div').append('</br>');
+                                       $('#city-div').append('<p>Crime Index is an estimation of overall level of crime in a given city or a country. We consider crime levels lower than 20 as very low, crime levels between 20 and 40 as being low, crime levels between 40 and 60 as being moderate, crime levels between 60 and 80 as being high and finally crime levels higher than 80 as being very high.</p>');
+                                       $('#city-div').append('<p>Groceries Index is an estimation of grocery prices in the city compared to New York City. To calculate this section, Numbeo uses "Markets" section of each city.</p>');                                      
+                                       $('#city-div').append('<p>Health Care Index is an estimation of the overall quality of the health care system, health care professionals, equipment, staff, doctors, cost, etc.</p>');
+                                       $('#city-div').append('<p>Pollution Index is an estimation of the overall pollution in the city. The biggest weight is given to air pollution, than to water pollution/accessibility, two main pollution factors. Small weight is given to other pollution types.</p>');
+                                       $('#city-div').append('<p>Quality of Life Index (higher is better) is an estimation of overall quality of life by using empirical formula which takes into account purchasing power index (higher is better), pollution index (lower is better), house price to income ratio (lower is better), cost of living index (lower is better), safety index (higher is better), health care index (higher is better), traffic commute time index (lower is better) and climate index (higher is better).</p>');
+                                       $('#city-div').append('<p>Rent Index is an estimation of the overall rent of a city, a high rent index means a higher rent..</p>');
+
+                                       $('#city-div').append('<p>Safety index is, on the other way, quite opposite of crime index. If the city has a high safety index, it is considered very safe.</p>');  
             })
             })
         };
+
+
 
 
 });
