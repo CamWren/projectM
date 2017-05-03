@@ -253,7 +253,7 @@ $( document ).ready(function() {
                                        $('#city-div').append('<p>Health Care Index is an estimation of the overall quality of the health care system, health care professionals, equipment, staff, doctors, cost, etc.</p>');
                                        $('#city-div').append('<p>Pollution Index is an estimation of the overall pollution in the city. The biggest weight is given to air pollution, than to water pollution/accessibility, two main pollution factors. Small weight is given to other pollution types.</p>');
                                        $('#city-div').append('<p>Quality of Life Index (higher is better) is an estimation of overall quality of life by using empirical formula which takes into account purchasing power index (higher is better), pollution index (lower is better), house price to income ratio (lower is better), cost of living index (lower is better), safety index (higher is better), health care index (higher is better), traffic commute time index (lower is better) and climate index (higher is better).</p>');
-                                       $('#city-div').append('<p>Rent Index is an estimation of the overall rent of a city, a high rent index means a higher rent..</p>');
+                                       $('#city-div').append('<p>Rent Index is an estimation of the overall rent of a city, a high rent index means a higher.</p>');
 
                                        $('#city-div').append('<p>Safety index is, on the other way, quite opposite of crime index. If the city has a high safety index, it is considered very safe.</p>');  
             })
@@ -400,22 +400,18 @@ $("#rent").on('click', function(){
 
             $('#city-div').append("<table>");
             $('#city-div').append("<tr>");
-             $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div').append("<td> Air Quality: </td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results1air1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
             $('#city-div').append("<tr>");
-             $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div').append("<td>Green and Parks Quality: </td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results2air1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
             $('#city-div').append("<tr>");
-             $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div').append("<td>Pollution Index:</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results3air1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
             $('#city-div').append("<tr>");
-             $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div').append("<td>Noise & Light Pollution: </td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results4air1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
@@ -454,22 +450,18 @@ $("#rent").on('click', function(){
 
             $('#city-div2').append("<table>");
             $('#city-div2').append("<tr>");
- $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div2').append("<td> Air Quality: </td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results1air2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
             $('#city-div2').append("<tr>");
-             $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div2').append("<td>Green and Parks Quality: </td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results2air2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
             $('#city-div2').append("<tr>");
-             $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div2').append("<td>Pollution Index:</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results3air2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
             $('#city-div2').append("<tr>");
-             $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Car stolen rate</div></td>");
             $('#city-div2').append("<td>Noise & Light Pollution: </td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results4air2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
@@ -527,7 +519,7 @@ $("#crime").on("click", function(event) {
             $('#city-div').append("<td><progress id='myProgress' value=" + results1crime1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
             $('#city-div').append("<tr>");
-                        $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
+            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Property Crime: </td>");
 
             $('#city-div').append("<td><progress id='myProgress' value=" + results2crime1 + " max='100'></progress></td>");
@@ -881,49 +873,41 @@ $("#weather").on("click", function(event) {
             $('#city-div').append("<table>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Car</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results1traffic1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Bike</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results2traffic1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Walking</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results3traffic1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Bus</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results4traffic1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Motorbike</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results5traffic1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Working from Home</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results6traffic1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Train</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results7traffic1 + " max='100'></progress></td>");
             $('#city-div').append("</tr>");
 
             $('#city-div').append("<tr>");
-            $('#city-div').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div').append("<td>Other</td>");
             $('#city-div').append("<td><progress id='myProgress' value=" + results8traffic1 + " max='100'></progress></td>");
 
@@ -1005,49 +989,41 @@ $("#weather").on("click", function(event) {
             $('#city-div2').append("<table>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Car</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results1traffic2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Bike</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results2traffic2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Walking</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results3traffic2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Bus</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results4traffic2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Motorbike</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results5traffic2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Working from Home</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results6traffic2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Train</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results7traffic2 + " max='100'></progress></td>");
             $('#city-div2').append("</tr>");
 
             $('#city-div2').append("<tr>");
-            $('#city-div2').append("<td> <a><img src='https://www.aupaathletic.com/comun/imagenes/icon-info.png'></a>" + "<div class='test'>Problems with property crimes such as vandalism and theft</div></td>");
             $('#city-div2').append("<td>Other</td>");
             $('#city-div2').append("<td><progress id='myProgress' value=" + results8traffic2 + " max='100'></progress></td>");
 

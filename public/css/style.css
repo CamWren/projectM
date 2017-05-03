@@ -320,7 +320,7 @@ a:hover + .test {
     margin: 10px 10px !important;
     padding: 10px 10px !important;
         top: 152px !important;
-    right: 211px;
+    right: 101px;
     height: auto;
     width: 800px;
 }
@@ -977,5 +977,35 @@ section.second-w3ls .profile-w3ls p {
 	opacity: 1;
 }
 
+	
 
+
+progress,          /* All HTML5 progress enabled browsers */
+{
+
+    /* Turns off styling - not usually needed, but good to know. */
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+}
+
+/* IE10 */
+progress {
+    color: black;
+}
+
+/* Firefox */
+progress::-moz-progress-bar { 
+    background: black;  
+}
+
+/* Chrome */
+progress::-webkit-progress-value {
+    background: black;
+}
+
+progress[value^="9"]::-moz-progress-bar {
+background-color : red;
+}
 /*-- /responsive design --*/
