@@ -4,11 +4,11 @@
 	 viewBox="0 0 618.6 173.1" style="enable-background:new 0 0 618.6 173.1;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;}
-	.st1{fill:white;stroke:orange;stroke-width:2;}
-	.st2{fill:#FFFFFF;stroke:orange;stroke-width:2;}
+	.st1{fill:white;stroke:#efa656;stroke-width:2;}
+	.st2{fill:#FFFFFF;stroke:#efa656;stroke-width:2;}
 	.st3{font-family:'ArialNarrow';}
 	.st4{font-size:129px;}
-	
+
 </style>
 <g>
 	<path class="st0" d="M618.6,152.9c0,5.5-4.5,10-10,10H10c-5.5,0-10-4.5-10-10V10C0,4.5,4.5,0,10,0h598.6c5.5,0,10,4.5,10,10V152.9z

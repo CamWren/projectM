@@ -3,6 +3,11 @@
 html {
 	overflow-x: hidden;
 }
+p {
+	color: beige;
+	font-size: 22px;
+	padding-top: 21px !important;
+}
 
 footer {
 	color: #474545;
@@ -27,6 +32,7 @@ input[type="button"],input[type="submit"]{
 	-moz-transition:0.5s all;
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
+
 }
 h1,h2,h3,h4,h5,h6{
 	margin:0;	
@@ -42,11 +48,34 @@ ul{
 }
 label{
 	margin:0;
-	color: #dfef89;
+	color: #efa656;
+	font-size: 18px;
+	text-shadow: 2px 2px black;
 }
 
-#submit {
+#submitButton {
 	margin-right: 70px;
+	    background-color: #4f6e7b;
+    color: #43cb23;
+    text-shadow: 0px 1px 4px black;
+}
+#submitButton:hover{
+	background-color: green;
+	 box-shadow: 0 5px 15px rgba(0, 250, 0, .3);
+	 color:lightgreen;
+
+}
+#clearButton{
+	    background-color: #4f6e7b;
+    color: red;
+        margin-left: -55px;
+    text-shadow: 0px 1px 4px black;
+    }
+
+#clearButton:hover{
+	background-color: #7b0505;
+ box-shadow: 0 5px 15px rgba(251, 0, 0, .3);
+ color: pink;
 }
 
 #searchResultsList {
@@ -61,8 +90,8 @@ label{
 button{
 	width:115px;
 	margin-right: 3px;
-	background-color: rgb(146, 128, 92);
-	color: #dfef89;
+	background-color: rgb(79, 110, 123);
+	color: white;
 	border-radius: 4px 4px;
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -71,6 +100,9 @@ button{
 	-ms-transition:0.5s all;
 }
 
+button:hover{
+	background-color: #efa656;
+}
 
 #firstbutton{
 	margin-left: 44px;
@@ -223,14 +255,30 @@ label #city-input{
 
 #city-div{
 	float:left !important;
-	    margin-right: 92px;
-	    margin-left: 23px;
+margin-right: 12px;
+    margin-left: 3px;
+	    width: 362px;
+
+	        padding: 12px;
+	        text-align: left;
 
 
 }
 
 #city-div2{
 	float:left !important;
+	 margin-right: 23px;
+	    margin-left: 23px;
+	    width: 362px;
+
+	        padding: 12px;
+	        text-align: left;
+
+#containerElement{
+	border: 1px solid ;
+}
+
+
 	
 
 	}
@@ -272,7 +320,7 @@ a:hover + .test {
     margin: 10px 10px !important;
     padding: 10px 10px !important;
         top: 152px !important;
-    right: 211px;
+    right: 101px;
     height: auto;
     width: 800px;
 }
@@ -364,11 +412,11 @@ section.second-w3ls .tabs input#tab-6{
 	top: 200px;
 }
 section.second-w3ls .tabs label {
-	background: #8ea253;
+	background: #4f6e7b;
 	font-size: 15px;
 	font-weight:normal;
-	line-height:90px;
-	height:92px;
+	line-height:123px;
+	height:123px;
 	position: relative;
 	display: block;
 	width:170px;
@@ -410,6 +458,7 @@ section.second-w3ls .tab-label-3 {
 section.second-w3ls .tab-label-4 {
     z-index: 3;
     margin-bottom:1px;
+
 }
 section.second-w3ls .tab-label-5 {
     z-index: 2;
@@ -419,7 +468,7 @@ section.second-w3ls .tab-label-5 {
     margin-bottom: 1px;
 }
 section.second-w3ls .tabs input:checked + label {
-    background:#dfef89;
+    background:#24343b;
 	z-index: 6;
 	width:170px;
 	 border-radius: 5px 0 0 5px;
@@ -427,12 +476,15 @@ section.second-w3ls .tabs input:checked + label {
 	-moz-border-radius:5px 0 0 5px;
 	-o-border-radius:5px 0 0 5px;
 	-ms-border-radius:5px 0 0 5px;
+	color: #efa656;
+	text-shadow: 0 0 7px black;
+	text-shadow: 2px 2px black;
 }
 section.second-w3ls .clear-shadow {
 	clear: both;
 }
 section.second-w3ls .content {
-    background:rgba(76, 56, 34, 0.69);
+    background:rgba(43, 58, 65, 0.63);
 	/*--position: relative;--*/
     width: auto;
 
@@ -561,7 +613,7 @@ section.second-w3ls .content div h3 {
 section.second-w3ls .content div p {
 	font-size: 16px;
 	font-weight:normal;
-	line-height:35px;
+	line-height:17px !important;
 	text-align:justify;
 	margin: 0;
 	color: #fff;
@@ -925,4 +977,35 @@ section.second-w3ls .profile-w3ls p {
 	opacity: 1;
 }
 
+	
+
+
+progress,          /* All HTML5 progress enabled browsers */
+{
+
+    /* Turns off styling - not usually needed, but good to know. */
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
+}
+
+/* IE10 */
+progress {
+    color: black;
+}
+
+/* Firefox */
+progress::-moz-progress-bar { 
+    background: black;  
+}
+
+/* Chrome */
+progress::-webkit-progress-value {
+    background: black;
+}
+
+progress[value^="9"]::-moz-progress-bar {
+background-color : red;
+}
 /*-- /responsive design --*/

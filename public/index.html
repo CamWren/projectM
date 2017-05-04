@@ -48,9 +48,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <!-- /javascript -->
     <script type="text/javascript" src="js/modernizr.js"></script>
-    <script type="text/javascript" src="js/d3.js"></script>
     <script type="text/javascript" src="d3.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/d3.js"></script>
 
 <!--LEAFLET CODE BEGINNING-->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
@@ -97,7 +97,7 @@
             
             <div id="inputcontainer">
                         <form>
-                            <label>Enter City 1</label>
+                            <label>City 1</label>
                             <select type="text" id="city-input" name="city-input">
                                 <option value=""> </option>
                                 <option value=" Abilene, TX"> Abilene, TX</option>
@@ -695,7 +695,7 @@
                                 <option value=" Yuma, AZ "> Yuma, AZ </option>
                             </select>
 
-                            <label>Enter City 2</label>
+                            <label>City 2</label>
                             <select type="text" id="city-input2" name="city-input2">
                                 <option value=""> </option>
                                 <option value=" Abilene, TX"> Abilene, TX</option>
@@ -1292,11 +1292,12 @@
                                 <option value=" Yuba City, CA "> Yuba City, CA </option>
                                 <option value=" Yuma, AZ "> Yuma, AZ </option>
                             </select>
-
-                            <button id="submitButton"> Submit </button>
+                             </form>
+                        <div id="buttonContainer">
+                            <button id="submitButton"> Go </button>
                             <button id="clearButton"> Clear </button>
-
-                        </form>
+                        </div>
+                       
             </div>
                     
             <section class="second-w3ls">
@@ -1304,20 +1305,18 @@
                     <div class="col-lg-12 col-md-12 tab-w3layouts">
                         <section class="tabs">
                             <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" defaultChecked="true" />
-                            <label for="tab-1" class="tab-label-1">Compare</label>
+                            <label for="tab-1" class="tab-label-1">Compare Cities</label>
                             <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2" />
-                            <label for="tab-2" class="tab-label-2">Career</label>
-                            <input id="tab-3" type="radio" name="radio-set" class="tab-selector-3" />
-                            <label for="tab-3" class="tab-label-3">Residence</label>
+                            <label for="tab-2" class="tab-label-2">Find A Job</label>
                             <input id="tab-4" type="radio" name="radio-set" class="tab-selector-4" />
                             <label for="tab-4" class="tab-label-4">Preferences</label>
                             <div class="clear-shadow"></div>
                             <div class="content">
                                 <div class="content-1">
-                                    <h3>Compare Cities</h3>
+
                                     <button id="salaries" type="submit"> Salaries </button>
-                                    <button id="general" type="submit"> Overall Ratings </button>
-                                    <button id="rent" type="submit"> Average Prices </button>
+                                    <button id="general"> Overall Ratings </button>
+                                    <button id="rent">  Average Prices </button>
                                     <button id="air" type="submit"> Pollution </button>
                                     <button id="crime" type="submit"> Crime </button>
                                     <button id="weather" type="submit"> Weather </button>
@@ -1326,12 +1325,13 @@
                                     <br />
                                     <p id="city-div"></p>
                                     <p id="city-div2"></p>
+                                    <p id="city-div3"></p>
                                 </div>
                                 
                                 <div class="content-2">
                                     
                                         <li>
-                                            <h3 id="findJobs">Find Jobs</h3>
+                                            
                                             <form>
                                                 <h5 class="jobSearchFormTitles">With these words:</h5>
                                                 <br />
