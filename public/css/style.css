@@ -1,4 +1,14 @@
+#city2Name{
+	    top: -71px;
+    left: 240px;
+        width: 503px;
 
+}
+
+#cityName{
+	    position: relative;
+    top: 18px;
+}
 /*-- reset code --*/
 html {
 	overflow-x: hidden;
@@ -289,7 +299,12 @@ margin-right: 12px;
 
 .test {
     display: none !important;
-    
+
+}
+#logoMIGRATE{
+
+	width: 611px;
+}
     
 }
 
@@ -371,6 +386,7 @@ section.second-w3ls .tabs {
 
 .jobSearchFormTitles {
 	color: white;
+		margin-top: 20px !important;
 }
 
 #findJobs {
