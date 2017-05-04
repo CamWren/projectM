@@ -539,7 +539,7 @@ $("#submitButton").on("click", function(event) {
                         method: "GET"
                         })
                         .done(function(response) {
-                            console.log("hello!2"); v
+                            console.log("hello!2");
                             console.log(response);
                             var cityName2 = response.name;
                             var crime2 = response.crime_index;
