@@ -1,10 +1,18 @@
 // =======================================================================================================
 // GLOBAL VARIABLES
 var city_Scores = [];
+
 var citySelection = [];
 var citySelection2 = [];
 
+// Global Variables for Salary Calculator
+var rppsScore = [];
+var rppsScore2 = [];
 
+var sliderValue;
+
+var citySalary = [];
+var citySalary2 = [];
 // =======================================================================================================
 
 window.onload = function mapLoad() { 
@@ -299,40 +307,41 @@ var userIp = [];
     userIp.push(data.ip);
   });
 
+
+$('#clearButton').on('click', function() {
+  window.location.reload()
+});
+
+
 $("#submitButton").on("click", function(event) {
 
-    var city = $("#city-input").val().trim().toLowerCase();
+  var city = $("#city-input").val().trim().toLowerCase();
+  var city2 = $("#city-input2").val().trim().toLowerCase();
 
-      var city2 = $("#city-input2").val().trim().toLowerCase();
-   event.preventDefault();
+  event.preventDefault();
 
+  citySelection = [];
+  citySelection2 = [];
 
-   console.log("SUCCESS!!!!!!!!");
-     $('#city-div').html('');
-      
-            $('#city-div').append(function(event){
+  console.log("SUCCESS!!!!!!!!");
 
-                    var city = $("#city-input").val().trim().toLowerCase();
-                    // Different variable pushes to global variable citySelection without formatting to be used for salary calculation
-                    var sitee = $("#city-input").val().trim();
-                    citySelection.push(sitee);
-                    console.log(citySelection);
-                    var city2 = $("#city-input2").val().trim().toLowerCase();
-                    // Different variable pushes to global variable citySelection without formatting to be used for salary calculation
-                    var sitee2 = $("#city-input2").val().trim();
-                    citySelection2.push(sitee2);
-                    console.log(citySelection2);
+  $('#city-div').html('');
+  $('#city-div').append(function(event) {
 
-
-        var city2 = $("#city-input2").val().trim().toLowerCase();
-        // Different variable pushes to global variable citySelection2 without formatting to be used for salary calculation
-        var sitee2 = $("#city-input2").val().trim();
-        citySelection2.push(sitee2);
-        console.log(citySelection2);
-            if(city == "" && city2 == ""){
-        alert("Please enter two cities to compare")
-        return;
-    };
+  var city = $("#city-input").val().trim().toLowerCase();
+  // Different variable pushes to global variable citySelection without formatting to be used for salary calculation
+  var sitee = $("#city-input").val().trim();
+  citySelection.push(sitee);
+  console.log(citySelection);
+  var city2 = $("#city-input2").val().trim().toLowerCase();
+  // Different variable pushes to global variable citySelection without formatting to be used for salary calculation
+  var sitee2 = $("#city-input2").val().trim();
+  citySelection2.push(sitee2);
+  console.log(citySelection2);
+  if(city == "" && city2 == ""){
+    alert("Please enter two cities to compare")
+    return;
+  };
 
 
         var queryURL = "https://www.numbeo.com/api/indices?api_key=6b2rzozbl9v8lu&query=" + city;
@@ -1329,15 +1338,14 @@ var rpps = [{cityName: "Abilene, TX", indexScore: 91.7},
             {cityName: "Yuba City, CA", indexScore: 98.5},
             {cityName: "Yuma, AZ", indexScore: 93.3}];
 
-    var rppsScore = [];
-    var rppsScore2 = [];
-
-    var sliderValue;
-
-    var citySalary = [];
-    var citySalary2 = [];
-
     $("#salaries").on("click", function(event) {
+
+        rppsScore = [];
+        rppsScore2 = [];
+
+        citySalary = [];
+        citySalary2 = [];
+
         $('#city-div').html('');
         $('#city-div2').html('');
         $('#city-div').append("<h3 id='salcomparison'>Compare Salaries Between Cities</h3><br />");
