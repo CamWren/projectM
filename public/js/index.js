@@ -1,18 +1,24 @@
 // =======================================================================================================
 // GLOBAL VARIABLES
+var city_Scores = [];
 var citySelection = [];
 var citySelection2 = [];
+
+
 // =======================================================================================================
 
 window.onload = function mapLoad() { 
     console.log("loading map");
 
+
+function createMAP(latitude,longitude){
+      $('#map').remove(); 
+      $('#map-container').append("<div id='map'</div>");
 			var map = new L.Map('map');
             L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
             }).addTo(map);
-            var latitude = 29.97;
-            var longitude = -95.35;
+ 
             var city = new L.LatLng(latitude, longitude);
             map.setView(city,09);
             var drawnItems = new L.FeatureGroup();
@@ -55,6 +61,8 @@ window.onload = function mapLoad() {
                 polygon = e.layer;
                 map.addLayer(e.layer);
             });
+
+};
 
 getCities();
 
@@ -241,12 +249,19 @@ function myBestMatch() {
       bestMatch.latitude = city_Scores[i].latitude;
       bestMatch.longitude = city_Scores[i].longitude;
       console.log(bestMatch.city);
+
       $("#suggestedCity").html("<h4>Best Match: " + bestMatch.city + ", " + bestMatch.state + "</h4>");
     }
   }
 
   console.log(bestMatch);
+  console.log(bestMatch.latitude);
+  var lat = bestMatch.latitude;
 
+    console.log(bestMatch.longitude);
+      var log = bestMatch.longitude;
+
+      createMAP(lat,log);
 };
 
   
