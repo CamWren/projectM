@@ -302,12 +302,12 @@ margin-right: 12px;
 
 }
 #logoMIGRATE{
-
-	width: 611px;
+	margin-bottom: -60px;
+    margin-top: -7px;
+    margin-left: 78px;
+    height: 162px;
 }
     
-}
-
 #clearbutton{
     left: 10px;
     position: relative;
